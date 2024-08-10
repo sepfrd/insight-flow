@@ -1,6 +1,6 @@
 import "../styles/question.css";
 import { useState, useEffect } from "react";
-import { publicQuestionServices } from "../services/questionServices";
+import { publicQuestionServices } from "../api/questionServices";
 import { Questions } from "../components/Questions";
 
 export default function Home() {

@@ -4,10 +4,10 @@
   align-items: start;
   margin: 10px;
   padding: 5px;
-  border: 3px black solid;
-  border-color: black;
+  border: 3px solid;
   border-radius: 5px;
-  color: black;
+  border-color: var(--brand-color);
+  background-color: var(--top-bar-background-color);
 }
 
 .question-title {
@@ -22,7 +22,8 @@
 
 .answer-button {
   border: none;
-  background-color: lightgreen;
+  background-color: var(--brand-color);
+  color: var(--pattern-color);
   align-self: center;
   border-radius: 3px;
   padding: 10px 5px;
@@ -34,11 +35,12 @@
 }
 
 .questions {
-  width: 50%;
+  width: 75%;
   padding: 10px 0;
 }
 
 .questions-section {
+  color: var(--text-color);
   display: flex;
   flex-direction: row;
   width: 100%;

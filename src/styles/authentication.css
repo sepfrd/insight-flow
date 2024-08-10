@@ -1,0 +1,89 @@
+.form {
+  color: var(--text-color);
+  background-color: var(--top-bar-background-color);
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  border-radius: 10px;
+}
+
+.login-form-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.login-label {
+  margin: 5px;
+}
+
+.login-text-field {
+  width: 100%;
+  height: 3rem;
+  border: 2px lightgray solid;
+  border-radius: 5px;
+}
+
+.remember-me {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+
+.remember-me-checkbox:hover {
+  transform: scale(125%);
+}
+
+.remember-me-checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-color: #1c6ec2;
+  border-width: 3px;
+  margin-left: 20px;
+  transition: all linear 50ms;
+}
+
+.username,
+.password,
+.remember-me {
+  padding: 5px;
+  margin: 5px;
+}
+
+.login-button {
+  align-self: center;
+  margin: 1rem;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-size: large;
+  border: 2px var(--text-color) solid;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  color: var(--brand-color);
+}
+
+.response-200 {
+  display: block;
+  background-color: green;
+}
+
+.response-500 {
+  display: block;
+  background-color: red;
+}
+
+.response-400 {
+  display: block;
+  background-color: orange;
+}
+
+.response-none {
+  display: none;
+}

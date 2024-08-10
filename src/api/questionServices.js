@@ -1,8 +1,8 @@
-import { publicApiClient } from "../api/apiClients";
+import apiClient from "./apiClients";
 
 export const publicQuestionServices = {
   publicGetQuestionsAsync: async () => {
-    const response = await publicApiClient.get("/questions");
+    const response = await apiClient.get("public/questions");
     return response.data;
   },
 };
