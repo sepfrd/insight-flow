@@ -1,4 +1,4 @@
-import "../index.css";
+import "../styles/navigation-bar.css";
 import React, { useContext } from "react";
 import { ICONS, KEYS_VALUES } from "../utils/constants";
 import { AuthContext } from "../contexts/AuthContext";

@@ -2,8 +2,6 @@ import { useContext, useState } from "react";
 import "../styles/authentication.css";
 import { authService } from "../api/authService";
 import { AuthContext } from "../contexts/AuthContext";
-import { jwtDecode } from "jwt-decode";
-import { KEYS_VALUES } from "../utils/constants";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -13,7 +11,7 @@ export default function Login() {
     rememberMe: false,
   });
   const [response, setResponse] = useState({});
-  const { setUserInfo } = useContext(AuthContext);
+  const { onLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -24,10 +22,7 @@ export default function Login() {
     setResponse(loginResponse);
 
     if (loginResponse.IsSuccess && loginResponse.Data != null) {
-      const decoded = jwtDecode(loginResponse.Data);
-      sessionStorage.setItem(KEYS_VALUES.authTokenKey, JSON.stringify(decoded));
-      sessionStorage.setItem(KEYS_VALUES.authStatusKey, true);
-      setUserInfo(decoded);
+      onLogin(loginResponse.Data);
       navigate("/");
     }
   };
@@ -91,7 +86,7 @@ export default function Login() {
               type="checkbox"
               id="rememberMe"
               name="rememberMe"
-              className="form-check-input remember-me-checkbox"
+              className="remember-me-checkbox"
               checked={loginViewModel.rememberMe}
               onChange={(event) => {
                 setLoginViewModel({
@@ -108,8 +103,10 @@ export default function Login() {
           </button>
         </form>
       </div>
-      <div className={`response-${response.HttpStatusCode ?? "none"}`}>
-        <h1> {response.Message} </h1>
+      <div className="response-section">
+        <div className={`response response-${response.HttpStatusCode}`}>
+          <div> {response.Message} </div>
+        </div>
       </div>
     </>
   );

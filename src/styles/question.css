@@ -1,3 +1,5 @@
+@import url("../index.css");
+
 .single-question {
   display: flex;
   flex-direction: column;
@@ -20,7 +22,7 @@
   margin: 10px 0;
 }
 
-.answer-button {
+.submit-answer-button {
   border: none;
   background-color: var(--brand-color);
   color: var(--pattern-color);
@@ -32,6 +34,7 @@
 
 .questions-header {
   text-align: center;
+  color: var(--brand-color);
 }
 
 .questions {
