@@ -51,7 +51,7 @@ const NavigationBar = () => {
       <NavLink
         to="/"
         className="navbar-brand">
-        Reddit Mockup
+        Insight Flow
       </NavLink>
     </nav>
   );
