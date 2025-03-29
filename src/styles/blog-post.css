@@ -1,6 +1,6 @@
 @import url("../index.css");
 
-.single-question {
+.single-blog-post {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -12,48 +12,32 @@
   background-color: var(--top-bar-background-color);
 }
 
-.question-title {
+.blog-post-title {
   font-weight: bolder;
-  font-size: larger;
+  font-size: xx-large;
   margin-top: 10px;
 }
 
-.question-description {
+.blog-post-body {
   margin: 10px 0;
 }
 
-.question-buttons {
+.blog-post-buttons {
   display: flex;
   flex-direction: row;
 }
 
-.submit-answer-button {
-  border: none;
-  background-color: var(--brand-color);
-  color: var(--pattern-color);
-  align-self: center;
-  border-radius: 3px;
-  padding: 10px 5px;
-  margin: 10px;
-  cursor: pointer;
-}
-
-.submit-answer-button:disabled {
-  background-color: var(--text-color);
-  cursor: not-allowed;
-}
-
-.questions-header {
+.blog-posts-header {
   text-align: center;
   color: var(--brand-color);
 }
 
-.questions {
+.blog-posts {
   width: 75%;
   padding: 10px 0;
 }
 
-.questions-section {
+.blog-posts-section {
   color: var(--text-color);
   display: flex;
   flex-direction: row;

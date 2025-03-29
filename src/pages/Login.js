@@ -8,7 +8,6 @@ export default function Login() {
   const [loginViewModel, setLoginViewModel] = useState({
     username: "",
     password: "",
-    rememberMe: false,
   });
   const [response, setResponse] = useState({});
   const { onLogin } = useContext(AuthContext);
@@ -21,8 +20,8 @@ export default function Login() {
 
     setResponse(loginResponse);
 
-    if (loginResponse.IsSuccess && loginResponse.Data != null) {
-      onLogin(loginResponse.Data);
+    if (loginResponse.isSuccess && loginResponse.data != null) {
+      onLogin(loginResponse.data);
       navigate("/");
     }
   };

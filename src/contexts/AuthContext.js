@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedAuthToken = sessionStorage.getItem(KEYS_VALUES.authTokenKey);
     if (storedAuthToken) {
-      const decoded = JSON.parse(storedAuthToken);
+      const decoded = jwtDecode(storedAuthToken);
       setUserInfo(decoded);
     }
   }, []);

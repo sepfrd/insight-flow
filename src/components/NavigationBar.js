@@ -5,7 +5,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../contexts/ThemeContext";
 
-const NavigationBar = () => {
+export default function NavigationBar() {
   const { userInfo, onLogout } = useContext(AuthContext);
   const { toggleTheme } = useContext(ThemeContext);
 
@@ -55,6 +55,4 @@ const NavigationBar = () => {
       </NavLink>
     </nav>
   );
-};
-
-export default NavigationBar;
+}

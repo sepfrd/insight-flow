@@ -118,15 +118,15 @@ input:checked + .slider {
   bottom: 4px;
   transition: 200ms;
   transition-property: all;
+  background-image: var(--light-mode-icon);
   background-color: var(--background-color);
-  background-image: var(--dark-mode-icon);
   background-repeat: no-repeat;
   background-position: center;
 }
 
 input:checked + .slider:before {
   background-color: var(--top-bar-background-color);
-  background-image: var(--light-mode-icon);
+  background-image: var(--dark-mode-icon);
   background-repeat: no-repeat;
   background-position: center;
 }
