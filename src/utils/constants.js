@@ -1,15 +1,6 @@
 export const COLORS = {
-  lightText: "#faebd7",
-  lightBrand: "#3a96ff",
-  lightBackground: "#ffffff",
-  lightPattern: "#163b60",
-  lightTopBarBackground: "#11213d",
-
-  darkText: "#faebd7",
-  darkBackground: "#0d1a31",
-  darkBrand: "#bdff38",
-  darkPattern: "#163b60",
-  darkTopBarBackground: "#ffffff33",
+  primary: "#1b263b",
+  secondary: "#b3bcd1",
 };
 
 export const ICONS = {

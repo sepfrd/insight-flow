@@ -9,32 +9,26 @@ export const ThemeProvider = ({ children }) => {
   const setTheme = useCallback((mode) => {
     switch (mode) {
       case KEYS_VALUES.darkThemeValue:
-        document.documentElement.style.setProperty("--text-color", COLORS.darkText);
-        document.documentElement.style.setProperty("--brand-color", COLORS.darkBrand);
-        document.documentElement.style.setProperty("--background-color", COLORS.darkBackground);
-        document.documentElement.style.setProperty("--top-bar-background-color", COLORS.darkTopBarBackground);
-        document.documentElement.style.setProperty("--pattern-color", COLORS.darkPattern);
+        document.documentElement.style.setProperty("--text-color", COLORS.secondary);
+        document.documentElement.style.setProperty("--background-color", COLORS.primary);
         localStorage.setItem(KEYS_VALUES.themeKey, KEYS_VALUES.darkThemeValue);
         setThemeState(KEYS_VALUES.darkThemeValue);
         break;
       case KEYS_VALUES.lightThemeValue:
-        document.documentElement.style.setProperty("--text-color", COLORS.lightText);
-        document.documentElement.style.setProperty("--brand-color", COLORS.lightBrand);
-        document.documentElement.style.setProperty("--background-color", COLORS.lightBackground);
-        document.documentElement.style.setProperty("--top-bar-background-color", COLORS.lightTopBarBackground);
-        document.documentElement.style.setProperty("--pattern-color", COLORS.lightPattern);
+        document.documentElement.style.setProperty("--text-color", COLORS.primary);
+        document.documentElement.style.setProperty("--background-color", COLORS.secondary);
         localStorage.setItem(KEYS_VALUES.themeKey, KEYS_VALUES.lightThemeValue);
         setThemeState(KEYS_VALUES.lightThemeValue);
         break;
       default:
-        setTheme(KEYS_VALUES.lightThemeValue);
+        setTheme(KEYS_VALUES.darkThemeValue);
         break;
     }
   }, []);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem(KEYS_VALUES.themeKey);
-    setTheme(storedTheme || KEYS_VALUES.lightThemeValue);
+    setTheme(storedTheme || KEYS_VALUES.darkThemeValue);
   }, [setTheme]);
 
   const toggleTheme = () => {

@@ -1,12 +1,12 @@
 .form {
   color: var(--text-color);
-  background-color: var(--top-bar-background-color);
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   padding: 10px;
   width: 50%;
   border-radius: 10px;
-  border: 2px var(--brand-color) solid;
+  border: 2px var(--text-color) solid;
 }
 
 .login-form-div {
@@ -54,7 +54,7 @@
 
 .remember-me-checkbox:hover {
   transform: scale(125%);
-  border: 2px var(--brand-color) solid;
+  border: 2px var(--text-color) solid;
 }
 
 .remember-me-checkbox::before {
@@ -63,7 +63,7 @@
   height: 0.5rem;
   transform: scale(0);
   transition: 50ms transform ease-in-out;
-  background-color: var(--brand-color);
+  background-color: var(--text-color);
   transform-origin: bottom left;
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
@@ -85,14 +85,14 @@
   padding: 5px;
   border-radius: 5px;
   background-color: var(--background-color);
-  color: var(--pattern-color);
+  color: var(--text-color);
   font-size: large;
-  border: 2px var(--pattern-color) solid;
+  border: 2px var(--text-color) solid;
   cursor: pointer;
 }
 
 .login-button:hover {
-  color: var(--brand-color);
+  color: var(--text-color);
 }
 
 .response-section {

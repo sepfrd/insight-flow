@@ -8,12 +8,11 @@
 }
 
 * {
+  color: var(--text-color);
   font-family: "M PLUS Rounded 1c";
   letter-spacing: 1px;
 }
 
 html {
-  background: radial-gradient(circle, transparent 25%, var(--background-color) 26%), linear-gradient(0deg, transparent 44%, var(--pattern-color) 45%, var(--pattern-color) 55%, transparent 56%), linear-gradient(90deg, transparent 44%, var(--pattern-color) 45%, var(--pattern-color) 55%, transparent 56%);
-  background-size: 1rem 1rem;
   background-color: var(--background-color);
 }

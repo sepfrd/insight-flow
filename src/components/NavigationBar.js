@@ -7,17 +7,17 @@ import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function NavigationBar() {
   const { userInfo, onLogout } = useContext(AuthContext);
-  const { toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <nav className="top-bar">
       <label className="switch">
-        <input
-          type="checkbox"
-          id="theme-switcher"
-          onChange={toggleTheme}
-        />
-        <span className="slider round"></span>
+        <span className="slider round">
+          <button
+            className={`theme-switcher-button ${theme}`}
+            onClick={toggleTheme}
+          />
+        </span>
       </label>
       <NavLink
         to="/"

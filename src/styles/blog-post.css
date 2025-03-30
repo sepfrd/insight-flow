@@ -8,8 +8,8 @@
   padding: 5px;
   border: 3px solid;
   border-radius: 5px;
-  border-color: var(--brand-color);
-  background-color: var(--top-bar-background-color);
+  border-color: var(--text-color);
+  /* background-color: var(--background-color); */
 }
 
 .blog-post-title {
@@ -29,7 +29,6 @@
 
 .blog-posts-header {
   text-align: center;
-  color: var(--brand-color);
 }
 
 .blog-posts {
@@ -38,7 +37,6 @@
 }
 
 .blog-posts-section {
-  color: var(--text-color);
   display: flex;
   flex-direction: row;
   width: 100%;
