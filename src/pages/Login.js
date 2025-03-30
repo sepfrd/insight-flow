@@ -35,16 +35,16 @@ export default function Login() {
           onSubmit={handleSubmit}>
           <div className="username">
             <label
-              htmlFor="usernameOrEmail"
+              htmlFor="username"
               className="login-label">
-              Username or Email
+              Username
             </label>
             <input
               type="text"
-              id="usernameOrEmail"
-              name="usernameOrEmail"
+              id="username"
+              name="username"
               required
-              className="login-text-field"
+              className="form-text-field"
               value={loginViewModel.username}
               onChange={(event) =>
                 setLoginViewModel({
@@ -65,7 +65,7 @@ export default function Login() {
               id="password"
               name="password"
               required
-              className="login-text-field"
+              className="form-text-field"
               value={loginViewModel.password}
               onChange={(event) =>
                 setLoginViewModel({
@@ -75,29 +75,9 @@ export default function Login() {
               }
             />
           </div>
-          <div className="remember-me">
-            <label
-              htmlFor="rememberMe"
-              className="login-label">
-              Keep me logged in
-            </label>
-            <input
-              type="checkbox"
-              id="rememberMe"
-              name="rememberMe"
-              className="remember-me-checkbox"
-              checked={loginViewModel.rememberMe}
-              onChange={(event) => {
-                setLoginViewModel({
-                  ...loginViewModel,
-                  rememberMe: event.target.checked,
-                });
-              }}
-            />
-          </div>
           <button
             type="submit"
-            className="login-button">
+            className="form-button">
             Login
           </button>
         </form>

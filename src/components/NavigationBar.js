@@ -11,14 +11,13 @@ export default function NavigationBar() {
 
   return (
     <nav className="top-bar">
-      <label className="switch">
-        <span className="slider round">
-          <button
-            className={`theme-switcher-button ${theme}`}
-            onClick={toggleTheme}
-          />
-        </span>
-      </label>
+      <div className="switch">
+        <button
+          className="slider"
+          onClick={toggleTheme}>
+          <span className={`theme-switcher-icon ${theme}`}>{theme === KEYS_VALUES.darkThemeValue ? ICONS.moon : ICONS.sun}</span>
+        </button>
+      </div>
       <NavLink
         to="/"
         className="nav-item">
@@ -33,12 +32,20 @@ export default function NavigationBar() {
           <span className="nav-item-title">Logout</span>
         </NavLink>
       ) : (
-        <NavLink
-          className="nav-item"
-          to="/login">
-          <span className="nav-item-icon">{ICONS.login}</span>
-          <span className="nav-item-title">Login</span>
-        </NavLink>
+        <div className="login-signup-buttons">
+          <NavLink
+            className="nav-item"
+            to="/login">
+            <span className="nav-item-icon">{ICONS.login}</span>
+            <span className="nav-item-title">Login</span>
+          </NavLink>
+          <NavLink
+            className="nav-item"
+            to="/signup">
+            <span className="nav-item-icon">{ICONS.users}</span>
+            <span className="nav-item-title">Signup</span>
+          </NavLink>
+        </div>
       )}
       {userInfo?.role === KEYS_VALUES.adminRoleValue ? (
         <NavLink
