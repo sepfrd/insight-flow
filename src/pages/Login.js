@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [loginViewModel, setLoginViewModel] = useState({
-    username: "",
+    usernameOrEmail: "",
     password: "",
   });
   const [response, setResponse] = useState({});
@@ -35,21 +35,21 @@ export default function Login() {
           onSubmit={handleSubmit}>
           <div className="username">
             <label
-              htmlFor="username"
+              htmlFor="usernameOrEmail"
               className="login-label">
-              Username
+              Username Or Email
             </label>
             <input
               type="text"
-              id="username"
-              name="username"
+              id="usernameOrEmail"
+              name="usernameOrEmail"
               required
               className="form-text-field"
-              value={loginViewModel.username}
+              value={loginViewModel.usernameOrEmail}
               onChange={(event) =>
                 setLoginViewModel({
                   ...loginViewModel,
-                  username: event.target.value,
+                  usernameOrEmail: event.target.value,
                 })
               }
             />
