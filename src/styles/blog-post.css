@@ -1,11 +1,20 @@
 @import url("../index.css");
 
+.single-blog-post-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 3rem;
+  border-bottom: 2px solid var(--primary-color);
+  padding: 0.5rem;
+}
+
 .single-blog-post {
   display: flex;
   flex-direction: column;
   align-items: start;
-  margin-bottom: 3rem;
-  border-bottom: 2px solid var(--amaranth);
+  margin-top: 0.5rem;
 }
 
 .blog-posts-header {
@@ -16,9 +25,6 @@
 .blog-post-title {
   font-weight: bolder;
   font-size: xx-large;
-  padding: 0.2rem 0.5rem;
-  border-radius: 1rem;
-  border: medium solid var(--amaranth);
 }
 
 .blog-post-body {

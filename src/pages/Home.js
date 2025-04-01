@@ -50,6 +50,8 @@ export default function Home() {
       ...prevState,
       pageNumber: page,
     }));
+
+    window.scrollTo(0, 0);
   };
 
   if (loading) return <div>Loading...</div>;
