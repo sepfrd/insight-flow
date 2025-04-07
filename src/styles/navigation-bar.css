@@ -6,8 +6,85 @@
   padding: 1rem;
   align-items: center;
   justify-content: space-between;
-  border-radius: 100px;
-  border: 2px var(--primary-color) solid;
+  border-radius: 10rem;
+  border: 0.2rem solid var(--primary-color);
+}
+
+.top-bar-right,
+.top-bar-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+}
+
+.top-bar-right {
+  justify-content: end;
+}
+
+/* .top-bar-right .nav-item {
+  margin: 0 0.1rem;
+}
+
+.top-bar-right .nav-item {
+  padding: 0 0.5rem;
+  margin: 0 0.5rem;
+} */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  text-align: right;
+  padding: 0 0.5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  color: var(--gunmetal);
+  background-color: var(--hunyadi-yellow);
+}
+
+.dropdown-icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover {
+  min-width: 10rem;
+  background-color: var(--gunmetal);
+  color: var(--hunyadi-yellow);
+}
+
+.dropdown-content {
+  display: none;
+  min-width: 100%;
+  position: absolute;
+  right: 0;
+  padding: 0.5rem 0;
+  border-radius: 0 0 0.5rem 0.5rem;
+  color: var(--hunyadi-yellow);
+  background-color: var(--gunmetal);
+  z-index: 100;
+}
+
+.dropdown-item {
+  all: unset;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0 0.5rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  background: none;
+  cursor: pointer;
+  transition: all 100ms linear;
+}
+
+.dropdown-item:hover {
+  color: var(--gunmetal);
+  background-color: var(--hunyadi-yellow);
 }
 
 .navbar-brand {
@@ -27,40 +104,26 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 5px;
-  border-radius: 15px;
-  border: 0.15rem transparent solid;
+  vertical-align: middle;
+  padding: 0 1rem;
+  margin: 0 1rem;
+  border-radius: 10rem;
   cursor: pointer;
   transition: all 100ms linear;
 }
 
 .nav-item-title {
-  margin: 3px;
   font-size: 1rem;
 }
 
-.nav-item-icon svg {
-  height: 2rem;
-  width: 2rem;
-  margin: 3px;
-  vertical-align: middle;
+.nav-item-icon {
+  font-size: 2rem;
+  padding: 0 0.5rem 0 0;
 }
 
-.nav-item:hover,
-.form-button:hover,
-#not-found-home-button:hover {
-  border: 0.15rem var(--gunmetal) solid;
-  transform: scale(110%);
-}
-
-.login-signup-buttons .nav-item {
-  margin: 0 1rem;
-}
-
-.login-signup-buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.nav-item:hover {
+  background-color: var(--gunmetal);
+  color: var(--hunyadi-yellow);
 }
 
 .hidden {

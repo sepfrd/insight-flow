@@ -5,6 +5,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Profile from "./pages/Profile";
+import UserBlogPosts from "./pages/UserBlogPosts";
 
 export default function App() {
   return (
@@ -23,6 +25,14 @@ export default function App() {
           <Route
             path="/signup"
             element={<Signup />}
+          />
+          <Route
+            path="/profile"
+            element={<Profile />}
+          />
+          <Route
+            path="/my-blog-posts"
+            element={<UserBlogPosts />}
           />
         </Routes>
       </ThemeProvider>

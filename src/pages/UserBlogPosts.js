@@ -1,11 +1,9 @@
 import { blogPostServices } from "../api/blogPostServices";
 import { BlogPosts } from "../components/BlogPosts";
 import PaginatedResult from "../components/PaginatedResult";
-import "../styles/blog-post.css";
-import "../styles/pagination.css";
 
-export default function Home() {
-  const fetchPage = (filters) => blogPostServices.getBlogPostsAsync(filters);
+export default function UserBlogPosts() {
+  const fetchPage = (filters) => blogPostServices.getUserBlogPostsAsync(filters);
   const resultComponentBuilder = (items) => <BlogPosts blogPostsList={items} />;
 
   return (

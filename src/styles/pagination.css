@@ -3,7 +3,7 @@
   position: sticky;
   top: 1rem;
   width: 100%;
-  z-index: 100;
+  z-index: 10;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -21,7 +21,8 @@
 }
 
 .pagination-button,
-.pages {
+.pages,
+.page-size-picker {
   text-align: center;
   color: var(--primary-color);
   background-color: var(--secondary-color);
@@ -31,6 +32,14 @@
   border-radius: 5px;
   border: none;
 }
+
+.page-size-picker select {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 0.3rem;
+}
+
 .pagination-button {
   cursor: pointer;
 }

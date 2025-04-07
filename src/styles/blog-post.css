@@ -27,6 +27,12 @@
   font-size: xx-large;
 }
 
+.blog-post-footer {
+  color: var(--primary-color);
+  opacity: 0.5;
+  font-size: xx-small;
+}
+
 .blog-post-body {
   padding: 0.5rem 0;
 }
