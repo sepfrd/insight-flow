@@ -1,41 +1,4 @@
-.profile-grid {
-  padding: 0.5rem;
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  border: 0.2rem solid var(--amaranth);
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  border-radius: 1rem;
-  min-width: max-content;
-  max-width: max-content;
-  overflow: hidden;
-}
-
-/* .user-info-label {
-	font-size: larger;
-	} */
-
-.my-blog-posts-button {
-  border: non;
-  padding: 1rem;
-  background-color: var(--primary-color);
-  border: 0.2rem solid var(--amaranth);
-  color: var(--secondary-color);
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 100ms linear;
-  text-align: center;
-  border-radius: 1rem;
-}
-
-.my-blog-posts-button:hover {
-  background-color: var(--amaranth);
-  border-color: var(--alice-blue);
-  color: var(--gunmetal);
-}
-
-.user-section {
+.profile-container {
   padding: 1rem;
   display: flex;
   flex-direction: row;
@@ -43,51 +6,28 @@
   align-items: center;
 }
 
-.dashboard-container {
+.profile-grid {
+  font-size: larger;
+  background-color: none;
+  color: var(--primary-color);
+  border: 0.2rem solid var(--primary-color);
   display: flex;
-  height: 100vh;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  border-radius: 1rem;
+  min-width: max-content;
+  max-width: max-content;
+  min-height: 20vh;
+  overflow: hidden;
 }
 
-.sidebar {
-  width: 250px;
-  background: #333;
-  color: white;
-  padding: 20px;
+.user-info-item {
+  width: 100%;
+  padding: 2rem;
+  border-bottom: 0.1rem solid var(--primary-color);
 }
 
-.sidebar h2 {
-  text-align: center;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  padding: 10px;
-  border-bottom: 1px solid #555;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
-  display: block;
-}
-
-.sidebar ul li a:hover {
-  background: #444;
-}
-
-.content {
-  flex-grow: 1;
-  padding: 20px;
-}
-
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+.profile-label {
+  color: var(--amaranth);
 }

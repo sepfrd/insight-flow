@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import UserBlogPosts from "./pages/UserBlogPosts";
+import CreateBlogPost from "./pages/CreateBlogPost";
 
 export default function App() {
   return (
@@ -33,6 +34,10 @@ export default function App() {
           <Route
             path="/my-blog-posts"
             element={<UserBlogPosts />}
+          />
+          <Route
+            path="/create-blog-post"
+            element={<CreateBlogPost />}
           />
         </Routes>
       </ThemeProvider>

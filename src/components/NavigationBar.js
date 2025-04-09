@@ -26,6 +26,14 @@ export default function NavigationBar() {
           <i class="bi bi-house-door nav-item-icon" />
           <span className="nav-item-title">Home</span>
         </NavLink>
+        {userInfo && (
+          <NavLink
+            to="/create-blog-post"
+            className="nav-item">
+            <i class="bi bi-pencil-square nav-item-icon" />
+            <span className="nav-item-title">Create</span>
+          </NavLink>
+        )}
       </div>
       <div className="top-bar-right">
         <div className="dropdown">
@@ -38,6 +46,12 @@ export default function NavigationBar() {
                   to="profile">
                   <i class="bi bi-person nav-item-icon" />
                   <span className="nav-item-title">Profile</span>
+                </NavLink>
+                <NavLink
+                  className="dropdown-item"
+                  to={"/my-blog-posts"}>
+                  <i class="bi bi-file-text nav-item-icon" />
+                  <span className="nav-item-title">My Blog Posts</span>
                 </NavLink>
                 <NavLink
                   to="/"

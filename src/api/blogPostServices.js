@@ -1,6 +1,14 @@
 import apiClient from "./apiClients";
 
 export const blogPostServices = {
+  submitBlogPostAsync: async ({ title, body }) => {
+    const response = await apiClient.post("blog-posts", {
+      title,
+      body,
+    });
+
+    return response;
+  },
   getBlogPostsAsync: async (filters) => {
     const { pageNumber, pageSize } = filters;
 
