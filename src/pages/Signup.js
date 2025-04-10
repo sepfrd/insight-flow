@@ -56,8 +56,6 @@ export default function Signup() {
       email: signupViewModel.email,
     });
 
-    console.log(signupResponse);
-
     setResponse(signupResponse);
 
     if (signupResponse.isSuccess && signupResponse.data != null) {

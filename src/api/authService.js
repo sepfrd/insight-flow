@@ -11,9 +11,7 @@ export const authService = {
   },
   signupAsync: async function (signupViewModel) {
     try {
-      console.log(signupViewModel);
       const response = await apiClient.post("/users", signupViewModel);
-      console.log(response);
       return response.data;
     } catch (exception) {
       return exception.response.data;

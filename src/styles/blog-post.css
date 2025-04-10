@@ -15,6 +15,7 @@
   flex-direction: column;
   align-items: start;
   margin-top: 0.5rem;
+  width: 100%;
 }
 
 .blog-posts-header {
@@ -27,10 +28,22 @@
   font-size: xx-large;
 }
 
+.dates-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: end;
+  opacity: 0.5;
+}
+
 .blog-post-footer {
   color: var(--primary-color);
-  opacity: 0.5;
+  width: 100%;
   font-size: xx-small;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
 }
 
 .blog-post-body {
@@ -49,4 +62,35 @@
   align-self: center;
   align-items: center;
   justify-content: center;
+}
+
+.page-content.blurred {
+  filter: blur(5px);
+  transition: filter 0.3s ease;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.edit-button {
+  all: unset;
+  background-color: var(--amaranth);
+  color: var(--alice-blue);
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 100ms linear;
+  font-size: 1rem;
 }

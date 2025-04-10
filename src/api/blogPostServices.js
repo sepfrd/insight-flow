@@ -51,6 +51,15 @@ export const blogPostServices = {
 
     return response.data;
   },
+  updateUserBlogPostAsync: async ({ blogPostUuid, newTitle, newBody }) => {
+    const response = await apiClient.patch("blog-posts", {
+      blogPostUuid,
+      newTitle,
+      newBody,
+    });
+
+    return response;
+  },
 };
 
 const isValid = (value) => value !== null && value !== undefined && value !== "";
