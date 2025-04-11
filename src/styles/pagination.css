@@ -1,4 +1,6 @@
-.pagination-section {
+@import url("../App.css");
+
+.pagination {
   display: flex;
   position: sticky;
   top: 1rem;
@@ -10,7 +12,7 @@
   margin: 0.5rem 0 0 0;
 }
 
-.pagination-bar {
+.pagination__bar {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -20,9 +22,9 @@
   background-color: var(--primary-color);
 }
 
-.pagination-button,
-.pages,
-.page-size-picker {
+.pagination__button,
+.pagination__pages,
+.pagination__page-size {
   text-align: center;
   color: var(--primary-color);
   background-color: var(--secondary-color);
@@ -33,26 +35,26 @@
   border: none;
 }
 
-.page-size-picker select {
+.page-size__picker {
   color: var(--secondary-color);
   background-color: var(--primary-color);
   border: none;
   border-radius: 0.3rem;
 }
 
-.pagination-button {
+.pagination__button {
   cursor: pointer;
 }
 
-.page-number {
+.pagination__page-number {
   color: var(--hunyadi-yellow);
 }
 
-.pagination-button:enabled:active {
+.pagination__button:enabled:active {
   color: var(--alice-blue);
   background-color: var(--amaranth);
 }
 
-.pagination-button:disabled {
+.pagination__button:disabled {
   opacity: 0.5;
 }

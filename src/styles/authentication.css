@@ -1,4 +1,6 @@
-.form {
+@import url("../App.css");
+
+.auth-from__form {
   color: var(--primary-color);
   background-color: var(--secondary-color);
   display: flex;
@@ -9,8 +11,7 @@
   border: 2px var(--primary-color) solid;
 }
 
-.signup-form-div,
-.login-form-div {
+.auth-form {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -18,7 +19,7 @@
   margin-top: 20px;
 }
 
-.form-text-field {
+.auth-form__text-field {
   height: 2.5rem;
   border: none;
   border-radius: 5px;
@@ -27,14 +28,13 @@
   outline-width: 5px;
 }
 
-.username,
-.password {
+.auth-form__item {
   margin: 5px;
   display: flex;
   flex-direction: column;
 }
 
-.form-button {
+.auth-form__button {
   align-self: center;
   margin: 1rem;
   padding: 5px;
@@ -46,11 +46,12 @@
   cursor: pointer;
 }
 
-.form-button:hover {
-  color: var(--primary-color);
+.auth-form__button:hover {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
 }
 
-.response-section {
+.response__body {
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
@@ -58,21 +59,21 @@
   justify-content: center;
 }
 
-.response {
+.response__body {
   border-radius: 5px;
   padding: 5px;
   font-size: xx-large;
   color: var(--primary-color);
 }
 
-.response-200 {
+.response__body--200 {
   background-color: rgba(0, 128, 0, 0.7);
 }
 
-.response-500 {
+.response__body--500 {
   background-color: rgba(255, 0, 0, 0.8);
 }
 
-.response-400 {
+.response__body--400 {
   background-color: rgba(255, 0, 0, 0.8);
 }

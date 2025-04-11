@@ -1,7 +1,7 @@
 import { blogPostServices } from "../api/blogPostServices";
 import { BlogPosts } from "../components/BlogPosts";
 import PaginatedResult from "../components/PaginatedResult";
-import "../styles/blog-post.css";
+import "../styles/blog-posts.css";
 import "../styles/pagination.css";
 
 export default function Home() {

@@ -2,12 +2,12 @@ import { Route, Routes } from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import CreateBlogPost from "./pages/CreateBlogPost";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
+import Signup from "./pages/Signup";
 import UserBlogPosts from "./pages/UserBlogPosts";
-import CreateBlogPost from "./pages/CreateBlogPost";
 
 export default function App() {
   return (

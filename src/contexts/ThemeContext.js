@@ -1,5 +1,5 @@
-import React, { createContext, useState, useEffect, useCallback } from "react";
-import { KEYS_VALUES, COLORS } from "../utils/constants";
+import React, { createContext, useCallback, useEffect, useState } from "react";
+import { COLORS, KEYS_VALUES } from "../utils/constants";
 
 export const ThemeContext = createContext();
 

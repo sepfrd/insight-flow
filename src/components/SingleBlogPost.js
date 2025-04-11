@@ -1,45 +1,42 @@
+import "../styles/single-blog-post.css";
 import UserCard from "./UserCard.js";
 
-export default function SingleBlogPost({ blogPost, handleEditButton, isEditable = false }) {
+export default function SingleBlogPost({ blogPost, handleEditButton, isOwned = false }) {
   return (
-    <div className="single-blog-post-container">
+    <div className="single-blog-post__container">
       <UserCard userInfo={blogPost.author} />
       <div className="single-blog-post">
-        <div className="blog-post-title">{blogPost.title}</div>
-        <div className="blog-post-body">{blogPost.body}</div>
-        <div className="blog-post-footer">
-          {isEditable && (
+        <div className="single-blog-post__title">{blogPost.title}</div>
+        <div className="single-blog-post__body">{blogPost.body}</div>
+        <div className="single-blog-post__footer">
+          {isOwned && (
             <button
-              className="edit-button"
+              className="single-blog-post__edit-button"
               onClick={() => handleEditButton(blogPost)}>
               Edit
             </button>
           )}
-          <div className="dates-section">
-            <div className="blog-post-footer-label">
+          <div className="single-blog-post__dates">
+            <div>
               Created at:{" "}
-              {new Date(blogPost.createdAt).toLocaleString("en-us", {
+              {new Date(`${blogPost.createdAt}Z`).toLocaleString({
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
                 hour: "2-digit",
                 minute: "2-digit",
                 formatMatcher: "basic",
-                hourCycle: "h24",
-                timeZoneName: "shortGeneric",
               })}
             </div>
-            <div className="blog-post-footer-label">
+            <div>
               Updated at:{" "}
-              {new Date(blogPost.updatedAt).toLocaleString("en-us", {
+              {new Date(`${blogPost.updatedAt}Z`).toLocaleString({
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
                 hour: "2-digit",
                 minute: "2-digit",
                 formatMatcher: "basic",
-                hourCycle: "h24",
-                timeZoneName: "shortGeneric",
               })}
             </div>
           </div>

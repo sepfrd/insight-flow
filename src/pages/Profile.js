@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import "../styles/profile.css";
 
@@ -8,18 +7,18 @@ export default function Profile() {
 
   return (
     <>
-      <div className="profile-container">
-        <div className="profile-grid">
-          <div className="user-info-item">
-            <span className="profile-label">Username: </span>
-            {userInfo.username}
+      <div className="profile">
+        <div className="profile__grid">
+          <div className="profile__item">
+            <span className="profile__label">Username: </span>
+            {userInfo?.username}
           </div>
-          <div className="user-info-item">
-            <span className="profile-label">User UUID: </span> {userInfo.uuid}
+          <div className="profile__item">
+            <span className="profile__label">User UUID: </span> {userInfo?.uuid}
           </div>
-          <div className="user-info-item">
-            <span className="profile-label">Role(s): </span>
-            {userInfo.role}
+          <div className="profile__item">
+            <span className="profile__label">Role(s): </span>
+            {userInfo?.role}
           </div>
         </div>
       </div>

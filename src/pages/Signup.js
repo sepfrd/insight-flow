@@ -6,7 +6,7 @@ import "../styles/authentication.css";
 import { REGEX_PATTERNS } from "../utils/constants";
 
 export default function Signup() {
-  const [signupViewModel, setLoginViewModel] = useState({
+  const [signupViewModel, setSignupViewModel] = useState({
     username: "test_user",
     password: "Correct_p0",
     confirmPassword: "Correct_p0",
@@ -38,6 +38,13 @@ export default function Signup() {
     return true;
   };
 
+  const handleChange = (e) => {
+    setSignupViewModel((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -66,57 +73,47 @@ export default function Signup() {
   return (
     <>
       {userInfo && navigate("/")}
-      <div className="signup-form-div">
+      <div className="auth-form">
         <form
-          id="signup-form"
-          className="form"
+          id="signupForm"
+          className="auth-from__form"
           onSubmit={handleSubmit}>
-          <div className="username">
+          <div className="auth-form__item">
             <label
-              htmlFor="first-name"
-              className="login-label">
+              htmlFor="firstName"
+              className="auth-form__label">
               First Name
             </label>
             <input
               type="text"
-              id="first-name"
-              name="first-name"
+              id="firstName"
+              name="firstName"
               required
-              className="form-text-field"
+              className="auth-form__text-field"
               value={signupViewModel.firstName}
-              onChange={(event) =>
-                setLoginViewModel({
-                  ...signupViewModel,
-                  firstName: event.target.value,
-                })
-              }
+              onChange={handleChange}
             />
           </div>
-          <div className="username">
+          <div className="auth-form__item">
             <label
-              htmlFor="last-name"
-              className="login-label">
+              htmlFor="lastName"
+              className="auth-form__label">
               Last Name
             </label>
             <input
               type="text"
-              id="last-name"
-              name="last-name"
+              id="lastName"
+              name="lastName"
               required
-              className="form-text-field"
+              className="auth-form__text-field"
               value={signupViewModel.lastName}
-              onChange={(event) =>
-                setLoginViewModel({
-                  ...signupViewModel,
-                  lastName: event.target.value,
-                })
-              }
+              onChange={handleChange}
             />
           </div>
-          <div className="username">
+          <div className="auth-form__item">
             <label
               htmlFor="username"
-              className="login-label">
+              className="auth-form__label">
               Username
             </label>
             <input
@@ -124,21 +121,16 @@ export default function Signup() {
               id="username"
               name="username"
               required
-              className="form-text-field"
+              className="auth-form__text-field"
               value={signupViewModel.username}
-              onChange={(event) =>
-                setLoginViewModel({
-                  ...signupViewModel,
-                  username: event.target.value,
-                })
-              }
+              onChange={handleChange}
             />
           </div>
 
-          <div className="username">
+          <div className="auth-form__item">
             <label
               htmlFor="email"
-              className="login-label">
+              className="auth-form__label">
               Email
             </label>
             <input
@@ -146,21 +138,16 @@ export default function Signup() {
               id="email"
               name="email"
               required
-              className="form-text-field"
+              className="auth-form__text-field"
               value={signupViewModel.email}
-              onChange={(event) =>
-                setLoginViewModel({
-                  ...signupViewModel,
-                  email: event.target.value,
-                })
-              }
+              onChange={handleChange}
             />
           </div>
 
-          <div className="password">
+          <div className="auth-form__item">
             <label
               htmlFor="password"
-              className="login-label">
+              className="auth-form__label">
               Password
             </label>
             <input
@@ -168,46 +155,36 @@ export default function Signup() {
               id="password"
               name="password"
               required
-              className="form-text-field"
+              className="auth-form__text-field"
               value={signupViewModel.password}
-              onChange={(event) =>
-                setLoginViewModel({
-                  ...signupViewModel,
-                  password: event.target.value,
-                })
-              }
+              onChange={handleChange}
             />
           </div>
-          <div className="confirm-password">
+          <div className="auth-form__item">
             <label
-              htmlFor="confirm-password"
-              className="login-label">
+              htmlFor="confirmPassword"
+              className="auth-form__label">
               Confirm Password
             </label>
             <input
               type="password"
-              id="confirm-password"
-              name="confirm-password"
+              id="confirmPassword"
+              name="confirmPassword"
               required
-              className="form-text-field"
+              className="auth-form__text-field"
               value={signupViewModel.confirmPassword}
-              onChange={(event) =>
-                setLoginViewModel({
-                  ...signupViewModel,
-                  confirmPassword: event.target.value,
-                })
-              }
+              onChange={handleChange}
             />
           </div>
           <button
             type="submit"
-            className="form-button">
+            className="auth-form__button">
             Signup
           </button>
         </form>
       </div>
-      <div className="response-section">
-        <div className={`response response-${response.statusCode}`}>
+      <div className="response">
+        <div className={`response__body response__body--${response.statusCode}`}>
           <div> {response.message} </div>
         </div>
       </div>

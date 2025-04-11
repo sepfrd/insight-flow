@@ -9,13 +9,14 @@
   max-width: 100%;
   overflow: hidden;
 }
-.user-card-body {
+
+.user-card__body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
 }
 
-.user-card-label {
+.user-card__label {
   padding: 0.3rem 0;
 }

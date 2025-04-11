@@ -1,4 +1,4 @@
-.profile-container {
+.profile {
   padding: 1rem;
   display: flex;
   flex-direction: row;
@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.profile-grid {
+.profile__grid {
   font-size: larger;
   background-color: none;
   color: var(--primary-color);
@@ -22,12 +22,12 @@
   overflow: hidden;
 }
 
-.user-info-item {
+.profile__item {
   width: 100%;
   padding: 2rem;
   border-bottom: 0.1rem solid var(--primary-color);
 }
 
-.profile-label {
+.profile__label {
   color: var(--amaranth);
 }

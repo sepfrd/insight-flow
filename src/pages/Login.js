@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import "../styles/authentication.css";
+import { useNavigate } from "react-router-dom";
 import { authService } from "../api/authService";
 import { AuthContext } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import "../styles/authentication.css";
 
 export default function Login() {
   const [loginViewModel, setLoginViewModel] = useState({
@@ -12,6 +12,13 @@ export default function Login() {
   const [response, setResponse] = useState({});
   const { onLogin } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setLoginViewModel((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,15 +35,15 @@ export default function Login() {
 
   return (
     <>
-      <div className="login-form-div">
+      <div className="auth-form">
         <form
-          id="login-form"
-          className="form"
+          id="loginForm"
+          className="auth-from__form"
           onSubmit={handleSubmit}>
-          <div className="username">
+          <div className="auth-form__item">
             <label
               htmlFor="usernameOrEmail"
-              className="login-label">
+              className="auth-form__label">
               Username Or Email
             </label>
             <input
@@ -44,20 +51,15 @@ export default function Login() {
               id="usernameOrEmail"
               name="usernameOrEmail"
               required
-              className="form-text-field"
+              className="auth-form__text-field"
               value={loginViewModel.usernameOrEmail}
-              onChange={(event) =>
-                setLoginViewModel({
-                  ...loginViewModel,
-                  usernameOrEmail: event.target.value,
-                })
-              }
+              onChange={handleChange}
             />
           </div>
-          <div className="password">
+          <div className="auth-form__item">
             <label
               htmlFor="password"
-              className="login-label">
+              className="auth-form__label">
               Password
             </label>
             <input
@@ -65,25 +67,20 @@ export default function Login() {
               id="password"
               name="password"
               required
-              className="form-text-field"
+              className="auth-form__text-field"
               value={loginViewModel.password}
-              onChange={(event) =>
-                setLoginViewModel({
-                  ...loginViewModel,
-                  password: event.target.value,
-                })
-              }
+              onChange={handleChange}
             />
           </div>
           <button
             type="submit"
-            className="form-button">
+            className="auth-form__button">
             Login
           </button>
         </form>
       </div>
-      <div className="response-section">
-        <div className={`response response-${response.HttpStatusCode}`}>
+      <div className="response">
+        <div className={`response__body response__body--${response.HttpStatusCode}`}>
           <div> {response.Message} </div>
         </div>
       </div>

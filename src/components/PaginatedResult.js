@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../styles/pagination.css";
 
 export default function PaginatedResult({ fetchPage, resultComponentBuilder }) {
   const [error, setError] = useState(null);
@@ -22,30 +23,33 @@ export default function PaginatedResult({ fetchPage, resultComponentBuilder }) {
       return;
     }
 
-    setPagination((prevState) => ({
-      ...prevState,
+    setPagination((prev) => ({
+      ...prev,
       pageNumber: page,
     }));
 
     window.scrollTo(0, 0);
   };
 
-  if (error) return <div>Error: {error}</div>;
+  if (error) return;
 
-  return (
+  return error ? (
+    <div>Error: {error}</div>
+  ) : (
     <>
-      <div className="pagination-section">
-        <div className="pagination-bar">
+      <div className="pagination">
+        <div className="pagination__bar">
           <button
             disabled={pageNumber === 1}
             onClick={() => navigateTo(pageNumber - 1)}
-            className="pagination-button">
+            className="pagination__button">
             Previous
           </button>
-          <div className="page-size-picker">
+          <div className="pagination__page-size">
             <label htmlFor="pageSize">Page Size: </label>
             <select
               name="pageSize"
+              className="page-size__picker"
               id="pageSize"
               onChange={(event) => {
                 setPagination({
@@ -59,13 +63,13 @@ export default function PaginatedResult({ fetchPage, resultComponentBuilder }) {
               <option value={100}>100</option>
             </select>
           </div>
-          <span className="pages">
-            Page <span className="page-number">{pageNumber}</span> of <span className="page-number">{totalPages}</span>
+          <span className="pagination__pages">
+            Page <span className="pagination__page-number">{pageNumber}</span> of <span className="pagination__page-number">{totalPages}</span>
           </span>
           <button
             disabled={pageNumber === totalPages}
             onClick={() => navigateTo(pageNumber + 1)}
-            className="pagination-button">
+            className="pagination__button">
             Next
           </button>
         </div>

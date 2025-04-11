@@ -9,74 +9,75 @@ export default function NavigationBar() {
   const { userInfo, onLogout } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
 
+  const isAuthenticated = userInfo && true;
+
   return (
-    <nav className="top-bar">
-      <div className="top-bar-left">
-        <div className="switch">
+    <nav className="navigation-bar">
+      <div className="navigation-bar__left">
+        <div className="navigation-bar__theme-switch">
           <button
-            className="slider"
+            className="theme-switch__slider"
             onClick={toggleTheme}>
-            <span className={`theme-switcher-icon ${theme}`}>{theme === KEYS_VALUES.darkThemeValue ? ICONS.moon : ICONS.sun}</span>
+            <span className={`theme-switch__icon ${theme === KEYS_VALUES.darkThemeValue && "theme-switch__icon--dark"}`}>{theme === KEYS_VALUES.darkThemeValue ? ICONS.moon : ICONS.sun}</span>
           </button>
         </div>
         <NavLink
           to="/"
-          className="nav-item"
-          id="home-button">
-          <i class="bi bi-house-door nav-item-icon" />
-          <span className="nav-item-title">Home</span>
+          className="navigation-bar__item">
+          <i className="bi bi-house-door navigation-bar__icon" />
+          <span className="navigation-bar__title">Home</span>
         </NavLink>
-        {userInfo && (
+        {isAuthenticated && (
           <NavLink
             to="/create-blog-post"
-            className="nav-item">
-            <i class="bi bi-pencil-square nav-item-icon" />
-            <span className="nav-item-title">Create</span>
+            className="navigation-bar__item">
+            <i className="bi bi-pencil-square navigation-bar__icon" />
+            <span className="navigation-bar__title">Create</span>
           </NavLink>
         )}
       </div>
-      <div className="top-bar-right">
-        <div className="dropdown">
-          {userInfo ? (
+      <div className="navigation-bar__right">
+        <div className="navigation-bar__dropdown">
+          {isAuthenticated ? (
             <>
-              <i className="bi bi-person-check dropdown-icon" />
-              <div className="dropdown-content">
+              <i className="bi bi-person-check dropdown__icon" />
+              <div className="dropdown__content">
                 <NavLink
-                  className="dropdown-item"
+                  className="dropdown__item"
                   to="profile">
-                  <i class="bi bi-person nav-item-icon" />
-                  <span className="nav-item-title">Profile</span>
+                  <i className="bi bi-person navigation-bar__icon" />
+                  <span className="navigation-bar__title">Profile</span>
                 </NavLink>
                 <NavLink
-                  className="dropdown-item"
+                  className="dropdown__item"
                   to={"/my-blog-posts"}>
-                  <i class="bi bi-file-text nav-item-icon" />
-                  <span className="nav-item-title">My Blog Posts</span>
+                  <i className="bi bi-file-text navigation-bar__icon" />
+                  <span className="navigation-bar__title">My Blog Posts</span>
                 </NavLink>
                 <NavLink
                   to="/"
-                  className="dropdown-item"
+                  className="dropdown__item"
                   onClick={onLogout}>
-                  <i class="bi bi-box-arrow-in-left nav-item-icon" />
-                  <span className="nav-item-title">Logout</span>
+                  <i className="bi bi-box-arrow-in-left navigation-bar__icon" />
+                  <span className="navigation-bar__title">Logout</span>
                 </NavLink>
               </div>
             </>
           ) : (
             <>
-              <i className="bi bi-person-x dropdown-icon" />
-              <div className="dropdown-content">
+              <i className="bi bi-person-x dropdown__icon" />
+              <div className="dropdown__content">
                 <NavLink
-                  className="dropdown-item"
+                  className="dropdown__item"
                   to="/login">
-                  <i class="bi bi-box-arrow-in-right nav-item-icon" />
-                  <span className="nav-item-title">Sign-in</span>
+                  <i className="bi bi-box-arrow-in-right navigation-bar__icon" />
+                  <span className="navigation-bar__title">Sign-in</span>
                 </NavLink>
                 <NavLink
-                  className="dropdown-item"
+                  className="dropdown__item"
                   to="/signup">
-                  <i class="bi bi-person-add nav-item-icon" />
-                  <span className="nav-item-title">Signup</span>
+                  <i className="bi bi-person-add navigation-bar__icon" />
+                  <span className="navigation-bar__title">Signup</span>
                 </NavLink>
               </div>
             </>
@@ -85,17 +86,12 @@ export default function NavigationBar() {
       </div>
       {userInfo?.role === KEYS_VALUES.adminRoleValue ? (
         <NavLink
-          className="nav-item"
+          className="navigation-bar__item"
           to="/users">
-          <i class="bi bi-people nav-item-icon" />
-          <span className="nav-item-title">Users</span>
+          <i className="bi bi-people navigation-bar__icon" />
+          <span className="navigation-bar__title">Users</span>
         </NavLink>
       ) : null}
-      {/* <NavLink
-        to="/"
-        className="navbar-brand">
-        Insight Flow
-      </NavLink> */}
     </nav>
   );
 }

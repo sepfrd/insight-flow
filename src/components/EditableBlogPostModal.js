@@ -1,42 +1,49 @@
 import { useState } from "react";
-import "../styles/create-blog-post.css";
+import "../styles/editable-blog-post.css";
 
 export default function EditableBlogPostModal({ initialTitle = "", initialBody = "", formTitle, onCancel, onSubmit }) {
-  const [title, setTitle] = useState(initialTitle);
-  const [body, setBody] = useState(initialBody);
+  const [blogPost, setBlogPost] = useState({ title: initialTitle, body: initialBody });
+
+  const handleChange = (e) => {
+    setBlogPost((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
   return (
     <>
-      <div class="blog-post-form">
+      <div className="editable-blog-post">
         <h2>{formTitle}</h2>
 
         <label for="title">Title</label>
         <input
+          name="title"
           type="text"
-          id="title"
           placeholder="Enter blog title"
           required
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
+          value={blogPost.title}
+          onChange={handleChange}
         />
 
         <label for="body">Body</label>
         <textarea
-          id="body"
+          name="body"
+          type="text"
           placeholder="Write your blog post here..."
           required
-          value={body}
-          onChange={(event) => setBody(event.target.value)}></textarea>
+          value={blogPost.body}
+          onChange={handleChange}></textarea>
 
-        <div class="button-group">
+        <div className="editable-blog-post__buttons">
           <button
-            class="cancel-btn"
+            className="editable-blog-post__cancel-button"
             onClick={onCancel}>
             Cancel
           </button>
           <button
-            class="submit-btn"
-            onClick={() => onSubmit({ title, body })}>
+            className="editable-blog-post__submit-button"
+            onClick={() => onSubmit(blogPost)}>
             Submit
           </button>
         </div>
