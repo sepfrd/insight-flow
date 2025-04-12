@@ -19,24 +19,28 @@ export default function SingleBlogPost({ blogPost, handleEditButton, isOwned = f
           <div className="single-blog-post__dates">
             <div>
               Created at:{" "}
-              {new Date(`${blogPost.createdAt}Z`).toLocaleString({
+              {new Date(blogPost.createdAt).toLocaleString("en-us", {
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
                 hour: "2-digit",
                 minute: "2-digit",
                 formatMatcher: "basic",
+                hourCycle: "h24",
+                timeZoneName: "shortGeneric",
               })}
             </div>
             <div>
               Updated at:{" "}
-              {new Date(`${blogPost.updatedAt}Z`).toLocaleString({
+              {new Date(blogPost.updatedAt).toLocaleString("en-us", {
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
                 hour: "2-digit",
                 minute: "2-digit",
                 formatMatcher: "basic",
+                hourCycle: "h24",
+                timeZoneName: "shortGeneric",
               })}
             </div>
           </div>
