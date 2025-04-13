@@ -9,6 +9,8 @@ import "../styles/single-blog-post.css";
 export default function UserBlogPosts() {
   const [showEditModal, setEditShowModal] = useState(false);
   const [editingPost, setEditingPost] = useState({ blogPostUuid: null, title: "", body: "" });
+  const [deletingPostUuid, setDeletingPostUuid] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleEditButton = (blogPost) => {
     setEditingPost({ blogPostUuid: blogPost.uuid, title: blogPost.title, body: blogPost.body });
@@ -16,8 +18,14 @@ export default function UserBlogPosts() {
     setEditShowModal(true);
   };
 
+  const handleDeleteButton = (blogPost) => {
+    setDeletingPostUuid(blogPost.uuid);
+    setShowDeleteModal(true);
+  };
+
   const handleCancel = () => {
     setEditShowModal(false);
+    setShowDeleteModal(false);
     setEditingPost(null);
   };
 
@@ -39,12 +47,27 @@ export default function UserBlogPosts() {
     setEditShowModal(false);
   };
 
+  const handleDeleteSubmit = async (blogPostUuid) => {
+    await blogPostServices.deleteUserBlogPostAsync({ blogPostUuid });
+
+    setShowDeleteModal(false);
+  };
+
+  const handleBackgroundClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setEditShowModal(false);
+      setShowDeleteModal(false);
+    }
+  };
+
   const fetchPage = (filters) => blogPostServices.getUserBlogPostsAsync(filters);
+
   const resultComponentBuilder = (items) => (
     <BlogPosts
       blogPostsList={items}
       isOwned={true}
       handleEditButton={handleEditButton}
+      handleDeleteButton={handleDeleteButton}
     />
   );
 
@@ -57,7 +80,9 @@ export default function UserBlogPosts() {
         />
       </div>
       {showEditModal && (
-        <div className="blog-posts__modal--overlay">
+        <div
+          className="blog-posts__modal"
+          onClick={handleBackgroundClick}>
           <EditableBlogPostModal
             initialTitle={editingPost.title}
             initialBody={editingPost.body}
@@ -65,6 +90,27 @@ export default function UserBlogPosts() {
             onCancel={handleCancel}
             onSubmit={handleEditSubmit}
           />
+        </div>
+      )}
+      {showDeleteModal && (
+        <div
+          className="blog-posts__modal"
+          onClick={handleBackgroundClick}>
+          <div className="modal__overlay">
+            <span>Are you sure you want to delete this blog post?</span>
+            <div className="deleting-blog-post__buttons">
+              <button
+                className="deleting-blog-post__submit-button"
+                onClick={() => handleDeleteSubmit(deletingPostUuid)}>
+                <span>Yes, Delete it</span>
+              </button>
+              <button
+                className="deleting-blog-post__cancel-button"
+                onClick={handleCancel}>
+                <span>No</span>
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </>

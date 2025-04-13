@@ -1,28 +1,16 @@
-.editable-blog-post {
-  display: flex;
-  flex-direction: column;
-  max-width: fit-content;
-  margin: 1rem auto;
-  padding: 1rem;
-  border-radius: 1rem;
-  border: 0.1rem solid var(--primary-color);
-  box-shadow: 0 4px 12px var(--secondary-color);
-  background: none;
-}
-
-.editable-blog-post h2 {
+.editable-blog-post__header {
   margin: 0;
   font-size: 1.5rem;
 }
 
-.editable-blog-post label {
+.editable-blog-post__label {
   display: block;
   margin-top: 1rem;
   font-size: 1.25rem;
 }
 
-.editable-blog-post input,
-.editable-blog-post textarea {
+.editable-blog-post__input,
+.editable-blog-post__textarea {
   border: none;
   padding: 1rem;
   margin-top: 1rem;
@@ -31,7 +19,7 @@
   font-size: 1rem;
 }
 
-.editable-blog-post textarea {
+.editable-blog-post__textarea {
   min-height: 10vh;
   min-width: 50vh;
 }

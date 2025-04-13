@@ -1,7 +1,7 @@
 import "../styles/single-blog-post.css";
 import UserCard from "./UserCard.js";
 
-export default function SingleBlogPost({ blogPost, handleEditButton, isOwned = false }) {
+export default function SingleBlogPost({ blogPost, handleEditButton, handleDeleteButton, isOwned = false }) {
   return (
     <div className="single-blog-post__container">
       <UserCard userInfo={blogPost.author} />
@@ -10,11 +10,21 @@ export default function SingleBlogPost({ blogPost, handleEditButton, isOwned = f
         <div className="single-blog-post__body">{blogPost.body}</div>
         <div className="single-blog-post__footer">
           {isOwned && (
-            <button
-              className="single-blog-post__edit-button"
-              onClick={() => handleEditButton(blogPost)}>
-              Edit
-            </button>
+            <div className="single-blog-post__buttons">
+              <button
+                className="single-blog-post__button"
+                onClick={() => handleEditButton(blogPost)}>
+                Edit
+              </button>
+              <button
+                className="single-blog-post__button"
+                onClick={() => {
+                  console.log("Hello");
+                  handleDeleteButton(blogPost);
+                }}>
+                Delete
+              </button>
+            </div>
           )}
           <div className="single-blog-post__dates">
             <div>

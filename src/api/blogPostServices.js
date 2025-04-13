@@ -60,6 +60,11 @@ export const blogPostServices = {
 
     return response;
   },
+  deleteUserBlogPostAsync: async ({ blogPostUuid }) => {
+    const response = await apiClient.delete(`blog-posts/${blogPostUuid}`);
+
+    return response;
+  },
 };
 
 const isValid = (value) => value !== null && value !== undefined && value !== "";

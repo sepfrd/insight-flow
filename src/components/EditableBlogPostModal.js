@@ -13,24 +13,33 @@ export default function EditableBlogPostModal({ initialTitle = "", initialBody =
 
   return (
     <>
-      <div className="editable-blog-post">
-        <h2>{formTitle}</h2>
-
-        <label for="title">Title</label>
+      <div className="modal__overlay">
+        <h2 className="editable-blog-post__header">{formTitle}</h2>
+        <label
+          for="title"
+          className="editable-blog-post__label">
+          Title
+        </label>
         <input
           name="title"
           type="text"
           placeholder="Enter blog title"
+          className="editable-blog-post__input"
           required
           value={blogPost.title}
           onChange={handleChange}
         />
 
-        <label for="body">Body</label>
+        <label
+          for="body"
+          className="editable-blog-post__label">
+          Body
+        </label>
         <textarea
           name="body"
           type="text"
           placeholder="Write your blog post here..."
+          className="editable-blog-post__input"
           required
           value={blogPost.body}
           onChange={handleChange}></textarea>

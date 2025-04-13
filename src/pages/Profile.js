@@ -18,7 +18,7 @@ export default function Profile() {
           </div>
           <div className="profile__item">
             <span className="profile__label">Role(s): </span>
-            {userInfo?.role}
+            {userInfo?.roles.join(", ")}
           </div>
         </div>
       </div>

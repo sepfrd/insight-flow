@@ -1,9 +1,9 @@
-import "../styles/navigation-bar.css";
 import React, { useContext } from "react";
-import { ICONS, KEYS_VALUES } from "../utils/constants";
-import { AuthContext } from "../contexts/AuthContext";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 import { ThemeContext } from "../contexts/ThemeContext";
+import "../styles/navigation-bar.css";
+import { ICONS, KEYS_VALUES } from "../utils/constants";
 
 export default function NavigationBar() {
   const { userInfo, onLogout } = useContext(AuthContext);
@@ -84,14 +84,6 @@ export default function NavigationBar() {
           )}
         </div>
       </div>
-      {userInfo?.role === KEYS_VALUES.adminRoleValue ? (
-        <NavLink
-          className="navigation-bar__item"
-          to="/users">
-          <i className="bi bi-people navigation-bar__icon" />
-          <span className="navigation-bar__title">Users</span>
-        </NavLink>
-      ) : null}
     </nav>
   );
 }
