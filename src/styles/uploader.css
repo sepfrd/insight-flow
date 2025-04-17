@@ -1,0 +1,48 @@
+.uploader {
+  color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+
+.uploader__modal {
+  min-height: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.15rem dashed var(--primary-color);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.uploader__title {
+  font-size: larger;
+  margin-bottom: 1rem;
+}
+
+.uploader__input {
+  margin: 1rem 0;
+  color: var(--primary-color);
+}
+
+.uploader__button {
+  padding: 0.5rem 1rem;
+  color: var(--alice-blue);
+  background-color: var(--lighter-green);
+  font-size: large;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.uploader button:hover {
+  background-color: var(--darker-green);
+}
+
+.uploader__preview {
+  max-width: 20vh;
+  border-radius: 1rem;
+  margin: 1rem 0;
+}

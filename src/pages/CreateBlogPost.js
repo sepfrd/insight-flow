@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { blogPostServices } from "../api/blogPostServices";
+import { blogPostService } from "../api/blogPostService";
 import EditableBlogPostModal from "../components/EditableBlogPostModal";
 
 export default function CreateBlogPost() {
@@ -10,7 +10,7 @@ export default function CreateBlogPost() {
       return alert("Please fill out both fields.");
     }
 
-    await blogPostServices.submitBlogPostAsync({ title, body });
+    await blogPostService.submitBlogPostAsync({ title, body });
 
     navigate("/my-blog-posts");
   };

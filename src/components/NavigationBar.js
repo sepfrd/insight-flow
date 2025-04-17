@@ -1,15 +1,42 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { storageService } from "../api/storageService";
 import { AuthContext } from "../contexts/AuthContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 import "../styles/navigation-bar.css";
 import { ICONS, KEYS_VALUES } from "../utils/constants";
+import { StorageContext } from "../contexts/StorageContext";
 
 export default function NavigationBar() {
+  const [profileImage, setProfileImage] = useState(null);
   const { userInfo, onLogout } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const { storageUpdated } = useContext(StorageContext);
 
   const isAuthenticated = userInfo && true;
+
+  const fetchProfileImageAsync = async () => {
+    let storedImage = await storageService.loadProfileImageAsync();
+
+    if (!storedImage) {
+      return null;
+    }
+
+    const url = URL.createObjectURL(storedImage);
+    return url;
+  };
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      return;
+    }
+
+    fetchProfileImageAsync().then((storedImage) => {
+      if (storedImage) {
+        setProfileImage(storedImage);
+      }
+    });
+  }, [isAuthenticated, storageUpdated]);
 
   return (
     <nav className="navigation-bar">
@@ -37,52 +64,54 @@ export default function NavigationBar() {
         )}
       </div>
       <div className="navigation-bar__right">
-        <div className="navigation-bar__dropdown">
-          {isAuthenticated ? (
-            <>
-              <i className="bi bi-person-check dropdown__icon" />
-              <div className="dropdown__content">
-                <NavLink
-                  className="dropdown__item"
-                  to="profile">
+        {isAuthenticated ? (
+          <>
+            <NavLink
+              className="navigation-bar__item"
+              to={"/my-blog-posts"}>
+              <i className="bi bi-file-text navigation-bar__icon" />
+              <span className="navigation-bar__title">My Blog Posts</span>
+            </NavLink>
+            <NavLink
+              to="/"
+              className="navigation-bar__item"
+              onClick={onLogout}>
+              <i className="bi bi-box-arrow-in-left navigation-bar__icon" />
+              <span className="navigation-bar__title">Logout</span>
+            </NavLink>
+            <NavLink
+              className="navigation-bar__item"
+              to="profile">
+              {profileImage ? (
+                <img
+                  src={profileImage}
+                  alt="From server"
+                  className="navigation-bar__image"
+                />
+              ) : (
+                <>
                   <i className="bi bi-person navigation-bar__icon" />
                   <span className="navigation-bar__title">Profile</span>
-                </NavLink>
-                <NavLink
-                  className="dropdown__item"
-                  to={"/my-blog-posts"}>
-                  <i className="bi bi-file-text navigation-bar__icon" />
-                  <span className="navigation-bar__title">My Blog Posts</span>
-                </NavLink>
-                <NavLink
-                  to="/"
-                  className="dropdown__item"
-                  onClick={onLogout}>
-                  <i className="bi bi-box-arrow-in-left navigation-bar__icon" />
-                  <span className="navigation-bar__title">Logout</span>
-                </NavLink>
-              </div>
-            </>
-          ) : (
-            <>
-              <i className="bi bi-person-x dropdown__icon" />
-              <div className="dropdown__content">
-                <NavLink
-                  className="dropdown__item"
-                  to="/login">
-                  <i className="bi bi-box-arrow-in-right navigation-bar__icon" />
-                  <span className="navigation-bar__title">Sign-in</span>
-                </NavLink>
-                <NavLink
-                  className="dropdown__item"
-                  to="/signup">
-                  <i className="bi bi-person-add navigation-bar__icon" />
-                  <span className="navigation-bar__title">Signup</span>
-                </NavLink>
-              </div>
-            </>
-          )}
-        </div>
+                </>
+              )}
+            </NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink
+              className="navigation-bar__item"
+              to="/login">
+              <i className="bi bi-box-arrow-in-right navigation-bar__icon" />
+              <span className="navigation-bar__title">Sign-in</span>
+            </NavLink>
+            <NavLink
+              className="navigation-bar__item"
+              to="/signup">
+              <i className="bi bi-person-add navigation-bar__icon" />
+              <span className="navigation-bar__title">Signup</span>
+            </NavLink>
+          </>
+        )}
       </div>
     </nav>
   );

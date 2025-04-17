@@ -1,5 +1,5 @@
 import axios from "axios";
-import { KEYS_VALUES } from "../utils/constants";
+import { storageService } from "./storageService";
 
 const apiClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000/api",
@@ -7,7 +7,8 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
   (config) => {
-    const token = sessionStorage.getItem(KEYS_VALUES.authTokenKey);
+    const token = storageService.getAuthToken();
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

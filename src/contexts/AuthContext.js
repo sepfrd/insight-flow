@@ -1,6 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import React, { createContext, useEffect, useState } from "react";
-import { KEYS_VALUES } from "../utils/constants";
+import { storageService } from "../api/storageService";
 
 export const AuthContext = createContext();
 
@@ -8,22 +8,24 @@ export const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState();
 
   useEffect(() => {
-    const storedAuthToken = sessionStorage.getItem(KEYS_VALUES.authTokenKey);
+    const storedAuthToken = storageService.getAuthToken();
     if (storedAuthToken) {
       const decoded = jwtDecode(storedAuthToken);
       setUserInfo(decoded);
     }
   }, []);
+
   const onLogout = () => {
-    sessionStorage.clear();
-    sessionStorage.setItem(KEYS_VALUES.authStatusKey, false);
+    storageService.clearSessionStorage();
+    storageService.setAuthStatus(false);
+    storageService.clearIndexedDb();
     setUserInfo();
   };
 
   const onLogin = (token) => {
     const decoded = jwtDecode(token);
-    sessionStorage.setItem(KEYS_VALUES.authTokenKey, token);
-    sessionStorage.setItem(KEYS_VALUES.authStatusKey, true);
+    storageService.setAuthToken(token);
+    storageService.setAuthStatus(true);
     setUserInfo(decoded);
   };
 

@@ -1,0 +1,26 @@
+.modal__background--blurred {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(0.5rem);
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal__overlay {
+  display: flex;
+  flex-direction: column;
+  max-width: fit-content;
+  min-width: 50vh;
+  min-height: 50vh;
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 0.1rem solid var(--primary-color);
+  background: var(--secondary-color);
+}

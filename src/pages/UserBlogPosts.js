@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { blogPostServices } from "../api/blogPostServices";
+import { blogPostService } from "../api/blogPostService";
 import { BlogPosts } from "../components/BlogPosts";
 import EditableBlogPostModal from "../components/EditableBlogPostModal";
 import PaginatedResult from "../components/PaginatedResult";
 import "../styles/blog-posts.css";
+import "../styles/modal.css";
 import "../styles/single-blog-post.css";
 
 export default function UserBlogPosts() {
@@ -38,7 +39,7 @@ export default function UserBlogPosts() {
       return alert("Identical Content");
     }
 
-    await blogPostServices.updateUserBlogPostAsync({
+    await blogPostService.updateUserBlogPostAsync({
       blogPostUuid: editingPost.blogPostUuid,
       newTitle: newBlogPost.title,
       newBody: newBlogPost.body,
@@ -48,7 +49,7 @@ export default function UserBlogPosts() {
   };
 
   const handleDeleteSubmit = async (blogPostUuid) => {
-    await blogPostServices.deleteUserBlogPostAsync({ blogPostUuid });
+    await blogPostService.deleteUserBlogPostAsync({ blogPostUuid });
 
     setShowDeleteModal(false);
   };
@@ -60,7 +61,7 @@ export default function UserBlogPosts() {
     }
   };
 
-  const fetchPage = (filters) => blogPostServices.getUserBlogPostsAsync(filters);
+  const fetchPage = (filters) => blogPostService.getUserBlogPostsAsync(filters);
 
   const resultComponentBuilder = (items) => (
     <BlogPosts
@@ -81,7 +82,7 @@ export default function UserBlogPosts() {
       </div>
       {showEditModal && (
         <div
-          className="blog-posts__modal"
+          className="modal__background--blurred"
           onClick={handleBackgroundClick}>
           <EditableBlogPostModal
             initialTitle={editingPost.title}
@@ -94,9 +95,9 @@ export default function UserBlogPosts() {
       )}
       {showDeleteModal && (
         <div
-          className="blog-posts__modal"
+          className="modal__background--blurred"
           onClick={handleBackgroundClick}>
-          <div className="modal__overlay">
+          <div className="deleting-blog-post__overlay">
             <span>Are you sure you want to delete this blog post?</span>
             <div className="deleting-blog-post__buttons">
               <button

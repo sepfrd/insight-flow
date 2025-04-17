@@ -1,13 +1,14 @@
 .navigation-bar {
   display: flex;
   flex-direction: row;
-  background: var(--hunyadi-yellow);
-  color: var(--gunmetal);
-  padding: 1rem;
   align-items: center;
   justify-content: space-between;
-  border-radius: 10rem;
+  color: var(--gunmetal);
+  background: var(--hunyadi-yellow);
   border: 0.2rem solid var(--primary-color);
+  border-radius: 10rem;
+  padding: 0.5rem 0.3rem;
+  overflow: auto;
 }
 
 .navigation-bar__right,
@@ -19,12 +20,14 @@
 }
 
 .navigation-bar__right {
+  margin-right: 1rem;
   justify-content: end;
 }
 
 .navigation-bar__theme-switch {
   width: 4rem;
   height: 2rem;
+  margin-right: 1rem;
 }
 
 .theme-switch__slider {
@@ -62,87 +65,32 @@
 
 .navigation-bar__item {
   all: unset;
-  background: none;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  vertical-align: middle;
-  padding: 0 1rem;
-  margin: 0 1rem;
-  border-radius: 10rem;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: all 100ms linear;
 }
 
 .navigation-bar__title {
-  font-size: 100;
+  font-size: small;
+  text-align: center;
 }
 
 .navigation-bar__icon {
-  font-size: 2rem;
-  padding: 0 0.5rem 0 0;
+  font-size: xx-large;
+}
+
+.navigation-bar__image {
+  max-width: 3rem;
+  aspect-ratio: 1/1;
+  clip-path: circle();
 }
 
 .navigation-bar__item:hover {
   background-color: var(--gunmetal);
   color: var(--hunyadi-yellow);
-}
-
-.navigation-bar__dropdown {
-  position: relative;
-  display: inline-block;
-  text-align: right;
-  padding: 0 0.5rem;
-  border-radius: 1rem 1rem 0 0;
-  color: var(--gunmetal);
-  background-color: var(--hunyadi-yellow);
-  transition: opa 500ms linear;
-  visibility: visible;
-}
-
-.dropdown__icon {
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-.dropdown__content {
-  display: none;
-  visibility: hidden;
-  min-width: max-content;
-  position: absolute;
-  right: 0;
-  padding: 0.5rem 0;
-  border-radius: 0.5rem 0 0.5rem 0.5rem;
-  color: var(--hunyadi-yellow);
-  background-color: var(--gunmetal);
-  z-index: 100;
-}
-
-.navigation-bar__dropdown:hover .dropdown__content {
-  display: block;
-  visibility: visible;
-}
-
-.navigation-bar__dropdown:hover {
-  background-color: var(--gunmetal);
-  color: var(--hunyadi-yellow);
-}
-
-.dropdown__item {
-  all: unset;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  vertical-align: middle;
-  padding: 0 0.5rem;
-  margin: 0.5rem;
-  border-radius: 0.5rem;
-  background: none;
-  cursor: pointer;
-  transition: all 100ms linear;
-}
-
-.dropdown__item:hover {
-  color: var(--gunmetal);
-  background-color: var(--hunyadi-yellow);
 }

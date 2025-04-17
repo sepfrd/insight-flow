@@ -36,8 +36,10 @@ export const KEYS_VALUES = {
   authTokenKey: "auth_token",
   authStatusKey: "is_authenticated",
   rolesKey: "roles",
+  profileImageKey: "profile_image",
   adminRoleValue: "admin",
   userRoleValue: "basic_user",
+  indexedDbUpdatedEventName: "indexed-db-updated",
 };
 
 export const REGEX_PATTERNS = {

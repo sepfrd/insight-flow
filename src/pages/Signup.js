@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authService } from "../api/authService";
 import { AuthContext } from "../contexts/AuthContext";
@@ -70,9 +70,12 @@ export default function Signup() {
     }
   };
 
+  useEffect(() => {
+    userInfo && navigate("/");
+  }, [navigate, userInfo]);
+
   return (
     <>
-      {userInfo && navigate("/")}
       <div className="auth-form">
         <form
           id="signupForm"

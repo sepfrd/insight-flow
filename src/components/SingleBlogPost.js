@@ -18,10 +18,7 @@ export default function SingleBlogPost({ blogPost, handleEditButton, handleDelet
               </button>
               <button
                 className="single-blog-post__button"
-                onClick={() => {
-                  console.log("Hello");
-                  handleDeleteButton(blogPost);
-                }}>
+                onClick={() => handleDeleteButton(blogPost)}>
                 Delete
               </button>
             </div>

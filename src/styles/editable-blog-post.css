@@ -20,8 +20,7 @@
 }
 
 .editable-blog-post__textarea {
-  min-height: 10vh;
-  min-width: 50vh;
+  min-height: 20vh;
 }
 
 .editable-blog-post__buttons {
@@ -46,8 +45,8 @@
 }
 
 .editable-blog-post__submit-button {
-  background-color: #4caf50;
-  color: white;
+  background-color: var(--lighter-green);
+  color: var(--alice-blue);
 }
 
 .editable-blog-post__cancel-button:hover {
@@ -55,5 +54,5 @@
 }
 
 .editable-blog-post__submit-button:hover {
-  background-color: #45a049;
+  background-color: var(--darker-green);
 }

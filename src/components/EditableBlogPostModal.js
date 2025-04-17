@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/editable-blog-post.css";
+import "../styles/modal.css";
 
 export default function EditableBlogPostModal({ initialTitle = "", initialBody = "", formTitle, onCancel, onSubmit }) {
   const [blogPost, setBlogPost] = useState({ title: initialTitle, body: initialBody });
@@ -39,7 +40,7 @@ export default function EditableBlogPostModal({ initialTitle = "", initialBody =
           name="body"
           type="text"
           placeholder="Write your blog post here..."
-          className="editable-blog-post__input"
+          className="editable-blog-post__textarea"
           required
           value={blogPost.body}
           onChange={handleChange}></textarea>

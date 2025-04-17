@@ -1,6 +1,6 @@
 import apiClient from "./apiClients";
 
-export const blogPostServices = {
+export const blogPostService = {
   submitBlogPostAsync: async ({ title, body }) => {
     const response = await apiClient.post("blog-posts", {
       title,
