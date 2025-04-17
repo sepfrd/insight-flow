@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authService } from "../api/authService";
+import { storageService } from "../api/storageService";
+import { userService } from "../api/userService";
 import { AuthContext } from "../contexts/AuthContext";
 import "../styles/authentication.css";
-import { userService } from "../api/userService";
-import { storageService } from "../api/storageService";
 
 export default function Login() {
   const [loginViewModel, setLoginViewModel] = useState({
@@ -12,7 +12,7 @@ export default function Login() {
     password: "",
   });
   const [response, setResponse] = useState({});
-  const { userInfo, onLogin } = useContext(AuthContext);
+  const { userRoles, onLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,14 +24,28 @@ export default function Login() {
 
   const fetchAndStoreProfileImageAsync = async () => {
     const profileImage = await userService.getUserProfileImageAsync();
-    await storageService.storeProfileImageAsync(profileImage);
+    if (profileImage) {
+      await storageService.storeProfileImageAsync(profileImage);
+    }
+  };
+
+  const fetchAndSetInformationAsync = async () => {
+    const information = await userService.getUserInformationAsync();
+
+    const userInfo = {
+      uuid: information.data.uuid,
+      username: information.data.username,
+      email: information.data.email,
+      fullName: information.data.fullName,
+    };
+
+    storageService.setUserInfo(userInfo);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     let loginResponse = await authService.loginAsync(loginViewModel);
-
     setResponse(loginResponse);
 
     if (loginResponse.isSuccess && loginResponse.data != null) {
@@ -39,13 +53,15 @@ export default function Login() {
 
       await fetchAndStoreProfileImageAsync();
 
+      await fetchAndSetInformationAsync();
+
       navigate("/");
     }
   };
 
   useEffect(() => {
-    userInfo && navigate("/");
-  }, [navigate, userInfo]);
+    userRoles?.length > 0 && navigate("/");
+  }, [navigate, userRoles]);
 
   return (
     <>

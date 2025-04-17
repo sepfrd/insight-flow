@@ -37,6 +37,7 @@ export const KEYS_VALUES = {
   authStatusKey: "is_authenticated",
   rolesKey: "roles",
   profileImageKey: "profile_image",
+  userInfoKey: "user_info",
   adminRoleValue: "admin",
   userRoleValue: "basic_user",
   indexedDbUpdatedEventName: "indexed-db-updated",

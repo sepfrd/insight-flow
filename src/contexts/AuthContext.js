@@ -1,39 +1,45 @@
-import { jwtDecode } from "jwt-decode";
 import React, { createContext, useEffect, useState } from "react";
 import { storageService } from "../api/storageService";
+import { jwtDecode } from "jwt-decode";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [userInfo, setUserInfo] = useState();
+  const [userRoles, setUserRoles] = useState([]);
 
   useEffect(() => {
     const storedAuthToken = storageService.getAuthToken();
     if (storedAuthToken) {
       const decoded = jwtDecode(storedAuthToken);
-      setUserInfo(decoded);
+      console.log(decoded.roles);
+      setUserRoles(decoded.roles);
+      storageService.setAuthStatus(true);
+      return;
     }
+
+    storageService.setAuthStatus(false);
   }, []);
 
   const onLogout = () => {
     storageService.clearSessionStorage();
     storageService.setAuthStatus(false);
     storageService.clearIndexedDb();
-    setUserInfo();
+    setUserRoles();
+    window.location.reload();
   };
 
   const onLogin = (token) => {
     const decoded = jwtDecode(token);
     storageService.setAuthToken(token);
     storageService.setAuthStatus(true);
-    setUserInfo(decoded);
+    setUserRoles(decoded.roles);
   };
 
   return (
     <AuthContext.Provider
       value={{
-        userInfo,
-        setUserInfo,
+        userRoles,
+        setUserRoles,
         onLogin,
         onLogout,
       }}>

@@ -9,11 +9,11 @@ import { StorageContext } from "../contexts/StorageContext";
 
 export default function NavigationBar() {
   const [profileImage, setProfileImage] = useState(null);
-  const { userInfo, onLogout } = useContext(AuthContext);
+  const { userRoles, onLogout } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { storageUpdated } = useContext(StorageContext);
 
-  const isAuthenticated = userInfo && true;
+  const isAuthenticated = userRoles?.length > 0 && true;
 
   const fetchProfileImageAsync = async () => {
     let storedImage = await storageService.loadProfileImageAsync();

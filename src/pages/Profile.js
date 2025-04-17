@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { storageService } from "../api/storageService";
 import { userService } from "../api/userService";
 import Uploader from "../components/Uploader";
@@ -7,8 +8,10 @@ import "../styles/profile.css";
 
 export default function Profile() {
   const [profileImage, setProfileImage] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
   const [showUploadModal, setShowUploadModal] = useState(false);
-  const { userInfo } = useContext(AuthContext);
+  const { userRoles, onLogout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const fetchProfileImageAsync = async () => {
     let storedImage = await storageService.loadProfileImageAsync();
@@ -34,7 +37,6 @@ export default function Profile() {
   };
 
   const handleUpload = async (file) => {
-    console.log(file);
     if (!file) {
       alert("Please select a file.");
       return;
@@ -54,12 +56,22 @@ export default function Profile() {
   };
 
   useEffect(() => {
+    const userInformation = storageService.getUserInfo();
+
+    if (!userInformation) {
+      onLogout();
+      navigate("/");
+      return;
+    }
+
+    setUserInfo(userInformation);
+
     fetchProfileImageAsync().then((error) => {
-      if (!error) {
-        console.log(error);
+      if (error) {
+        return error;
       }
     });
-  }, []);
+  }, [navigate, onLogout]);
 
   return (
     <>
@@ -83,15 +95,23 @@ export default function Profile() {
         </div>
         <div className="profile__grid">
           <div className="profile__item">
+            <span className="profile__label">Full Name: </span>
+            {userInfo?.fullName}
+          </div>
+          <div className="profile__item">
             <span className="profile__label">Username: </span>
             {userInfo?.username}
           </div>
           <div className="profile__item">
-            <span className="profile__label">User UUID: </span> {userInfo?.uuid}
+            <span className="profile__label">Email: </span>
+            {userInfo?.email}
           </div>
           <div className="profile__item">
             <span className="profile__label">Role(s): </span>
-            {userInfo?.roles.join(", ")}
+            {Array.isArray(userRoles) ? userRoles?.join(", ") : userRoles}
+          </div>
+          <div className="profile__item">
+            <span className="profile__label">User UUID: </span> {userInfo?.uuid}
           </div>
         </div>
       </div>
