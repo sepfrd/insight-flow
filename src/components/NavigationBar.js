@@ -2,41 +2,32 @@ import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { storageService } from "../api/storageService";
 import { AuthContext } from "../contexts/AuthContext";
+import { StorageContext } from "../contexts/StorageContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 import "../styles/navigation-bar.css";
 import { ICONS, KEYS_VALUES } from "../utils/constants";
-import { StorageContext } from "../contexts/StorageContext";
 
 export default function NavigationBar() {
   const [profileImage, setProfileImage] = useState(null);
-  const { userRoles, onLogout } = useContext(AuthContext);
+  const { isAuthenticated, userInfo, onLogout } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { storageUpdated } = useContext(StorageContext);
 
-  const isAuthenticated = userRoles?.length > 0 && true;
-
-  const fetchProfileImageAsync = async () => {
-    let storedImage = await storageService.loadProfileImageAsync();
-
-    if (!storedImage) {
-      return null;
-    }
-
-    const url = URL.createObjectURL(storedImage);
-    return url;
-  };
-
   useEffect(() => {
-    if (!isAuthenticated) {
-      return;
-    }
+    const fetchProfileImageAsync = async () => {
+      let storedImage = await storageService.loadProfileImageAsync(userInfo?.username);
 
-    fetchProfileImageAsync().then((storedImage) => {
-      if (storedImage) {
-        setProfileImage(storedImage);
-      }
-    });
-  }, [isAuthenticated, storageUpdated]);
+      return !storedImage ? null : URL.createObjectURL(storedImage);
+    };
+
+    if (isAuthenticated) {
+      fetchProfileImageAsync().then((storedImage) => {
+        if (storedImage) {
+          setProfileImage(storedImage);
+        }
+      });
+    }
+  }, [isAuthenticated, userInfo, storageUpdated]);
 
   return (
     <nav className="navigation-bar">

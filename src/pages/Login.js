@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authService } from "../api/authService";
-import { storageService } from "../api/storageService";
-import { userService } from "../api/userService";
 import { AuthContext } from "../contexts/AuthContext";
 import "../styles/authentication.css";
 
@@ -12,7 +10,7 @@ export default function Login() {
     password: "",
   });
   const [response, setResponse] = useState({});
-  const { userRoles, onLogin } = useContext(AuthContext);
+  const { isAuthLoaded, isAuthenticated, onLogin } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,46 +20,24 @@ export default function Login() {
     }));
   };
 
-  const fetchAndStoreProfileImageAsync = async () => {
-    const profileImage = await userService.getUserProfileImageAsync();
-    if (profileImage) {
-      await storageService.storeProfileImageAsync(profileImage);
-    }
-  };
-
-  const fetchAndSetInformationAsync = async () => {
-    const information = await userService.getUserInformationAsync();
-
-    const userInfo = {
-      uuid: information.data.uuid,
-      username: information.data.username,
-      email: information.data.email,
-      fullName: information.data.fullName,
-    };
-
-    storageService.setUserInfo(userInfo);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     let loginResponse = await authService.loginAsync(loginViewModel);
+
     setResponse(loginResponse);
 
     if (loginResponse.isSuccess && loginResponse.data != null) {
-      onLogin(loginResponse.data);
-
-      await fetchAndStoreProfileImageAsync();
-
-      await fetchAndSetInformationAsync();
-
+      await onLogin(loginResponse.data);
       navigate("/");
     }
   };
 
   useEffect(() => {
-    userRoles?.length > 0 && navigate("/");
-  }, [navigate, userRoles]);
+    if (isAuthLoaded && isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthLoaded, isAuthenticated, navigate]);
 
   return (
     <>

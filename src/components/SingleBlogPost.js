@@ -4,7 +4,7 @@ import UserCard from "./UserCard.js";
 export default function SingleBlogPost({ blogPost, handleEditButton, handleDeleteButton, isOwned = false }) {
   return (
     <div className="single-blog-post__container">
-      <UserCard userRoles={blogPost.author} />
+      <UserCard userInfo={blogPost.author} />
       <div className="single-blog-post">
         <div className="single-blog-post__title">{blogPost.title}</div>
         <div className="single-blog-post__body">{blogPost.body}</div>

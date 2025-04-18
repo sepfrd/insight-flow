@@ -2,20 +2,18 @@ import { del, get, set } from "idb-keyval";
 import { KEYS_VALUES } from "../utils/constants";
 
 export const storageService = {
-  storeProfileImageAsync: async (blob) => {
-    await set(KEYS_VALUES.profileImageKey, blob);
+  storeProfileImageAsync: async (username, blob) => {
+    await set(`${KEYS_VALUES.profileImageKey}_${username}`, blob);
     window.dispatchEvent(new Event(KEYS_VALUES.indexedDbUpdatedEventName));
   },
-  loadProfileImageAsync: async () => {
-    const blob = await get(KEYS_VALUES.profileImageKey);
+  loadProfileImageAsync: async (username) => {
+    const blob = await get(`${KEYS_VALUES.profileImageKey}_${username}`);
     return blob;
   },
   getAuthToken: () => sessionStorage.getItem(KEYS_VALUES.authTokenKey),
-  getAuthStatus: () => sessionStorage.getItem(KEYS_VALUES.authStatusKey),
   getUserInfo: () => JSON.parse(sessionStorage.getItem(KEYS_VALUES.userInfoKey)),
-  setAuthToken: (token) => sessionStorage.setItem(KEYS_VALUES.authTokenKey, token),
-  setAuthStatus: (status) => sessionStorage.setItem(KEYS_VALUES.authStatusKey, status),
-  setUserInfo: (info) => sessionStorage.setItem(KEYS_VALUES.userInfoKey, JSON.stringify(info)),
-  clearIndexedDb: () => del(KEYS_VALUES.profileImageKey),
+  storeAuthToken: (token) => sessionStorage.setItem(KEYS_VALUES.authTokenKey, token),
+  storeUserInfo: (info) => sessionStorage.setItem(KEYS_VALUES.userInfoKey, JSON.stringify(info)),
+  deleteUserProfileImage: (username) => del(`${KEYS_VALUES.profileImageKey}_${username}`),
   clearSessionStorage: () => sessionStorage.clear(),
 };

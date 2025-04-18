@@ -1,49 +1,64 @@
+import { jwtDecode } from "jwt-decode";
 import React, { createContext, useEffect, useState } from "react";
 import { storageService } from "../api/storageService";
-import { jwtDecode } from "jwt-decode";
+import { userService } from "../api/userService";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [userRoles, setUserRoles] = useState([]);
+  const [userInfo, setUserInfo] = useState(null);
+  const [isAuthLoaded, setIsAuthLoaded] = useState(false);
+
+  const isAuthenticated = userInfo != null;
 
   useEffect(() => {
-    const storedAuthToken = storageService.getAuthToken();
-    if (storedAuthToken) {
-      const decoded = jwtDecode(storedAuthToken);
-      console.log(decoded.roles);
-      setUserRoles(decoded.roles);
-      storageService.setAuthStatus(true);
-      return;
+    const storedUserInfo = storageService.getUserInfo();
+
+    if (storedUserInfo) {
+      setUserInfo(storedUserInfo);
     }
 
-    storageService.setAuthStatus(false);
+    setIsAuthLoaded(true);
   }, []);
 
   const onLogout = () => {
+    storageService.deleteUserProfileImage(userInfo?.username);
     storageService.clearSessionStorage();
-    storageService.setAuthStatus(false);
-    storageService.clearIndexedDb();
-    setUserRoles();
+    setUserInfo(null);
     window.location.reload();
   };
 
-  const onLogin = (token) => {
+  const onLogin = async (token) => {
     const decoded = jwtDecode(token);
-    storageService.setAuthToken(token);
-    storageService.setAuthStatus(true);
-    setUserRoles(decoded.roles);
+    const information = await userService.getUserInformationAsync(token);
+    const profileImage = await userService.getUserProfileImageAsync(token);
+
+    const userInformation = {
+      uuid: information.data.uuid,
+      username: information.data.username,
+      email: information.data.email,
+      fullName: information.data.fullName,
+      roles: decoded.roles,
+    };
+
+    storageService.storeAuthToken(token);
+    storageService.storeUserInfo(userInformation);
+    await storageService.storeProfileImageAsync(userInformation.username, profileImage);
+
+    setUserInfo(userInformation);
+    setIsAuthLoaded(true);
   };
 
   return (
     <AuthContext.Provider
       value={{
-        userRoles,
-        setUserRoles,
+        isAuthLoaded,
+        userInfo,
+        isAuthenticated,
         onLogin,
         onLogout,
       }}>
-      {children}
+      {!isAuthLoaded ? <span>Loading...</span> : children}
     </AuthContext.Provider>
   );
 };

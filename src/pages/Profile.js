@@ -8,27 +8,9 @@ import "../styles/profile.css";
 
 export default function Profile() {
   const [profileImage, setProfileImage] = useState(null);
-  const [userInfo, setUserInfo] = useState(null);
   const [showUploadModal, setShowUploadModal] = useState(false);
-  const { userRoles, onLogout } = useContext(AuthContext);
+  const { userInfo, isAuthenticated, onLogout } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const fetchProfileImageAsync = async () => {
-    let storedImage = await storageService.loadProfileImageAsync();
-
-    if (!storedImage) {
-      storedImage = await userService.getUserProfileImageAsync();
-      await storageService.storeProfileImageAsync(storedImage);
-    }
-
-    if (!storedImage) {
-      return "Could not fetch profile image from either indexed DB or the backend API.";
-    }
-
-    const url = URL.createObjectURL(storedImage);
-
-    setProfileImage(url);
-  };
 
   const handleBackgroundClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -45,7 +27,7 @@ export default function Profile() {
     const response = await userService.uploadUserProfileImageAsync(file);
 
     if (response.isSuccess === true) {
-      await storageService.storeProfileImageAsync(file);
+      await storageService.storeProfileImageAsync(userInfo?.username, file);
 
       const url = URL.createObjectURL(file);
 
@@ -56,22 +38,35 @@ export default function Profile() {
   };
 
   useEffect(() => {
-    const userInformation = storageService.getUserInfo();
+    const fetchProfileImageAsync = async () => {
+      let storedImage = await storageService.loadProfileImageAsync(userInfo?.username);
 
-    if (!userInformation) {
+      if (!storedImage) {
+        storedImage = await userService.getUserProfileImageAsync();
+        await storageService.storeProfileImageAsync(storedImage);
+      }
+
+      if (!storedImage) {
+        return "Could not fetch profile image from either indexed DB or the backend API.";
+      }
+
+      const url = URL.createObjectURL(storedImage);
+
+      setProfileImage(url);
+    };
+
+    if (!isAuthenticated) {
       onLogout();
       navigate("/");
       return;
     }
-
-    setUserInfo(userInformation);
 
     fetchProfileImageAsync().then((error) => {
       if (error) {
         return error;
       }
     });
-  }, [navigate, onLogout]);
+  }, [isAuthenticated, onLogout, userInfo, navigate]);
 
   return (
     <>
@@ -108,7 +103,7 @@ export default function Profile() {
           </div>
           <div className="profile__item">
             <span className="profile__label">Role(s): </span>
-            {Array.isArray(userRoles) ? userRoles?.join(", ") : userRoles}
+            {Array.isArray(userInfo?.roles) ? userInfo?.roles?.join(", ") : userInfo?.roles}
           </div>
           <div className="profile__item">
             <span className="profile__label">User UUID: </span> {userInfo?.uuid}

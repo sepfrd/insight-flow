@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { blogPostService } from "../api/blogPostService";
 import { BlogPosts } from "../components/BlogPosts";
 import EditableBlogPostModal from "../components/EditableBlogPostModal";
@@ -6,12 +6,16 @@ import PaginatedResult from "../components/PaginatedResult";
 import "../styles/blog-posts.css";
 import "../styles/modal.css";
 import "../styles/single-blog-post.css";
+import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function UserBlogPosts() {
   const [showEditModal, setEditShowModal] = useState(false);
   const [editingPost, setEditingPost] = useState({ blogPostUuid: null, title: "", body: "" });
   const [deletingPostUuid, setDeletingPostUuid] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const { isAuthenticated, onLogout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleEditButton = (blogPost) => {
     setEditingPost({ blogPostUuid: blogPost.uuid, title: blogPost.title, body: blogPost.body });
@@ -71,6 +75,14 @@ export default function UserBlogPosts() {
       handleDeleteButton={handleDeleteButton}
     />
   );
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      onLogout();
+      navigate("/");
+      return;
+    }
+  }, [isAuthenticated, onLogout, navigate]);
 
   return (
     <>

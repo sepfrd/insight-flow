@@ -1,16 +1,32 @@
 import apiClient from "./apiClients";
 
 export const userService = {
-  getUserProfileImageAsync: async () => {
+  getUserProfileImageAsync: async (token) => {
+    const config = {
+      responseType: "blob",
+      headers: {},
+    };
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
     try {
-      const response = await apiClient.get("users/profile-image", { responseType: "blob" });
+      const response = await apiClient.get("users/profile-image", config);
       return response.data;
     } catch {
       return null;
     }
   },
-  getUserInformationAsync: async () => {
-    const response = await apiClient.get("users/information");
+  getUserInformationAsync: async (token) => {
+    const config = { headers: {} };
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    const response = await apiClient.get("users/information", config);
+
     return response.data;
   },
   uploadUserProfileImageAsync: async (imageFile) => {

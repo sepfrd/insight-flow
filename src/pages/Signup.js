@@ -16,7 +16,7 @@ export default function Signup() {
   });
   const [response, setResponse] = useState({});
   const navigate = useNavigate();
-  const { userRoles } = useContext(AuthContext);
+  const { userInfo } = useContext(AuthContext);
 
   const validate = (model) => {
     if (!new RegExp(REGEX_PATTERNS.username).test(model.username)) {
@@ -71,8 +71,8 @@ export default function Signup() {
   };
 
   useEffect(() => {
-    userRoles?.length > 0 && navigate("/");
-  }, [navigate, userRoles]);
+    userInfo?.length > 0 && navigate("/");
+  }, [navigate, userInfo]);
 
   return (
     <>
