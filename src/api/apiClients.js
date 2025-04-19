@@ -1,6 +1,6 @@
 import axios from "axios";
-import { storageService } from "./storageService";
 import { toastService } from "../utils/toastService";
+import { storageService } from "./storageService";
 
 const apiClient = axios.create({
   baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000/api",

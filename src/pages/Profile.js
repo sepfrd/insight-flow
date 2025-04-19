@@ -4,8 +4,8 @@ import { storageService } from "../api/storageService";
 import { userService } from "../api/userService";
 import Uploader from "../components/Uploader";
 import { AuthContext } from "../contexts/AuthContext";
-import "../styles/profile.css";
 import { ToastContext } from "../contexts/ToastContext";
+import "../styles/profile.css";
 
 export default function Profile() {
   const [profileImage, setProfileImage] = useState(null);

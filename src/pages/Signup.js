@@ -7,12 +7,12 @@ import { REGEX_PATTERNS } from "../utils/constants";
 
 export default function Signup() {
   const [signupViewModel, setSignupViewModel] = useState({
-    username: "test_user",
-    password: "Correct_p0",
-    confirmPassword: "Correct_p0",
-    email: "test@user.com",
-    firstName: "test",
-    lastName: "user",
+    username: "",
+    password: "",
+    confirmPassword: "",
+    email: "",
+    firstName: "",
+    lastName: "",
   });
   const [response, setResponse] = useState({});
   const navigate = useNavigate();

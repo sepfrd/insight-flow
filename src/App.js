@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import GlobalToast from "./components/GlobalToast";
 import NavigationBar from "./components/NavigationBar";
 import Uploader from "./components/Uploader";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -12,7 +13,6 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import UserBlogPosts from "./pages/UserBlogPosts";
-import GlobalToast from "./components/GlobalToast";
 
 export default function App() {
   return (
