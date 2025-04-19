@@ -5,11 +5,13 @@ import { userService } from "../api/userService";
 import Uploader from "../components/Uploader";
 import { AuthContext } from "../contexts/AuthContext";
 import "../styles/profile.css";
+import { ToastContext } from "../contexts/ToastContext";
 
 export default function Profile() {
   const [profileImage, setProfileImage] = useState(null);
   const [showUploadModal, setShowUploadModal] = useState(false);
   const { userInfo, isAuthenticated, onLogout } = useContext(AuthContext);
+  const { setMessage } = useContext(ToastContext);
   const navigate = useNavigate();
 
   const handleBackgroundClick = (e) => {
@@ -20,7 +22,7 @@ export default function Profile() {
 
   const handleUpload = async (file) => {
     if (!file) {
-      alert("Please select a file.");
+      setMessage({ type: "error", text: "Please select a file." });
       return;
     }
 

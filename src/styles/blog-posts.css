@@ -46,8 +46,8 @@
 }
 
 .deleting-blog-post__cancel-button {
-  color: var(--secondary-color);
-  background-color: var(--primary-color);
+  color: var(--alice-blue);
+  background-color: var(--lighter-green);
 }
 
 .deleting-blog-post__submit-button {
@@ -56,8 +56,8 @@
 }
 
 .deleting-blog-post__cancel-button:hover {
-  color: var(--secondary-color);
-  background-color: var(--apple-green);
+  color: var(--gunmetal);
+  background-color: var(--darker-green);
 }
 
 .deleting-blog-post__submit-button:hover {

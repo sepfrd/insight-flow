@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { blogPostService } from "../api/blogPostService";
 import { BlogPosts } from "../components/BlogPosts";
 import EditableBlogPostModal from "../components/EditableBlogPostModal";
 import PaginatedResult from "../components/PaginatedResult";
+import { AuthContext } from "../contexts/AuthContext";
+import { ToastContext } from "../contexts/ToastContext";
 import "../styles/blog-posts.css";
 import "../styles/modal.css";
 import "../styles/single-blog-post.css";
-import { AuthContext } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 export default function UserBlogPosts() {
   const [showEditModal, setEditShowModal] = useState(false);
@@ -15,6 +16,7 @@ export default function UserBlogPosts() {
   const [deletingPostUuid, setDeletingPostUuid] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const { isAuthenticated, onLogout } = useContext(AuthContext);
+  const { setMessage } = useContext(ToastContext);
   const navigate = useNavigate();
 
   const handleEditButton = (blogPost) => {
@@ -36,11 +38,13 @@ export default function UserBlogPosts() {
 
   const handleEditSubmit = async (newBlogPost) => {
     if (!newBlogPost.title || !newBlogPost.body) {
-      return alert("Please fill out both fields.");
+      setMessage({ type: "error", text: "Please fill out both fields." });
+      return;
     }
 
     if (newBlogPost.title === editingPost.title && newBlogPost.body === editingPost.body) {
-      return alert("Identical Content");
+      setMessage({ type: "error", text: "Identical Content!" });
+      return;
     }
 
     await blogPostService.updateUserBlogPostAsync({

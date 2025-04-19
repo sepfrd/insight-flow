@@ -12,6 +12,7 @@
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.5.0",
     "react-scripts": "^5.0.1",
+    "react-toastify": "^11.0.5",
     "resolve-url-loader": "^5.0.0",
     "webpack": "^5.98.0"
   },
