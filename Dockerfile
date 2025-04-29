@@ -1,19 +1,13 @@
-FROM node:current-alpine
-
-ENV NODE_ENV=production
-
-WORKDIR /usr/src/app
-
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-
-RUN npm install --production --silent && mv node_modules ../
-
+# Build Stage
+FROM node:lts-alpine AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
 COPY . .
+RUN npm run build
 
-EXPOSE 3000
-
-RUN chown -R node /usr/src/app
-
-USER node
-
-CMD ["npm", "start"]
+# Production Stage
+FROM nginx:stable-alpine AS production
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
