@@ -129,13 +129,13 @@ src
 │   ├── blog-posts.css
 │   ├── editable-blog-post.css
 │   ├── modal.css
-│   ├── navigation-bar.css
+│   ├── NavigationBar.css
 │   ├── not-found.css
 │   ├── pagination.css
 │   ├── profile.css
-│   ├── single-blog-post.css
+│   ├── singleBlogPost.css
 │   ├── uploader.css
-│   └── user-card.css
+│   └── userCard.css
 └── utils
     ├── constants.js
     └── toastService.js

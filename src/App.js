@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import GlobalToast from "./components/GlobalToast";
 import NavigationBar from "./components/NavigationBar";
-import Uploader from "./components/Uploader";
+import Uploader from "./components/Uploader/Uploader";
 import { AuthProvider } from "./contexts/AuthContext";
 import { StorageProvider } from "./contexts/StorageContext";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { ToastProvider } from "./contexts/ToastContext";
-import CreateBlogPost from "./pages/CreateBlogPost";
-import Home from "./pages/Home";
+import NewBlogPost from "./pages/NewBlogPost/NewBlogPost";
+import Home from "./pages/Home/Home";
 import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
+import NotFound from "./pages/NotFound/NotFound";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import UserBlogPosts from "./pages/UserBlogPosts";
@@ -45,7 +45,7 @@ export default function App() {
               />
               <Route
                 path="/create-blog-post"
-                element={<CreateBlogPost />}
+                element={<NewBlogPost />}
               />
               <Route
                 path="/uploader"

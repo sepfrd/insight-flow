@@ -1,0 +1,96 @@
+.NavigationBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--gunmetal);
+  background: var(--hunyadi-yellow);
+  border: 0.2rem solid var(--primary-color);
+  border-radius: 10rem;
+  padding: 0.5rem 0.3rem;
+  overflow: auto;
+}
+
+.NavigationBarRight,
+.NavigationBarLeft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+}
+
+.NavigationBarRight {
+  margin-right: 1rem;
+  justify-content: end;
+}
+
+.NavigationBarThemeSwitch {
+  width: 4rem;
+  height: 2rem;
+  margin-right: 1rem;
+}
+
+.ThemeSwitchSlider {
+  all: unset;
+  display: flex;
+  border-radius: 10rem;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary-color);
+  transition: all 200ms linear;
+}
+
+.ThemeSwitchIcon svg {
+  width: 100%;
+}
+
+.ThemeSwitchIcon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+  color: var(--secondary-color);
+  transition: all 150ms linear;
+  background-color: var(--primary-color);
+}
+
+.ThemeSwitchIconDark {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+.NavigationBarItem {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 100ms linear;
+}
+
+.NavigationBarTitle {
+  font-size: small;
+  text-align: center;
+}
+
+.NavigationBarIcon {
+  font-size: xx-large;
+}
+
+.NavigationBarImage {
+  max-width: 3rem;
+  aspect-ratio: 1/1;
+  clip-path: circle();
+}
+
+.NavigationBarItem:hover {
+  background-color: var(--gunmetal);
+  color: var(--hunyadi-yellow);
+}

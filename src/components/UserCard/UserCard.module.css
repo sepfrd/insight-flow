@@ -1,0 +1,22 @@
+.userCard {
+  display: flex;
+  flex-direction: row;
+  color: var(--primary-color);
+  border: 0.15rem solid var(--amaranth);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.3rem;
+  min-width: max-content;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.userCardBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.userCardLabel {
+  padding: 0.3rem 0;
+}

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { toastService } from "../utils/toastService";
+import { toastService } from "@/utils/toastService";
 
 export const ToastContext = createContext();
 

@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { KEYS_VALUES } from "../utils/constants";
+import { KEYS_VALUES } from "@/utils/constants";
 
 export const StorageContext = createContext();
 

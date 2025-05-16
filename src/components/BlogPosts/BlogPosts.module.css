@@ -1,0 +1,20 @@
+@import url("@/styles/global.css");
+
+blogPostsHeader {
+  text-align: center;
+  margin: 1rem 0 0 0;
+}
+
+.blogPosts {
+  margin: 0 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-self: center;
+}
+
+.blogPostsContentBlurred {
+  filter: blur(0.5rem);
+  transition: filter 0.3s ease;
+}

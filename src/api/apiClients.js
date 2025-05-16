@@ -1,9 +1,9 @@
 import axios from "axios";
-import { toastService } from "../utils/toastService";
+import { toastService } from "@/utils/toastService";
 import { storageService } from "./storageService";
 
 const apiClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000/api",
+  baseURL: process.env.REACT_APP_API_URL || "https://sepfrd.com/insight-flow/api",
 });
 
 apiClient.interceptors.request.use(

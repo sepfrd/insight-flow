@@ -1,0 +1,29 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+:root {
+  --amaranth: #d1495bff;
+  --hunyadi-yellow: #edae49ff;
+  --alice-blue: #ebf2faff;
+  --gunmetal: #242b38;
+  --lighter-green: #4caf50;
+  --darker-green: #45a049;
+  --primary-color: #c9af98;
+  --secondary-color: #3a4660;
+}
+
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  src: url("@/assets/fonts/MPLUSRounded1c-Medium.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  font-family: "M PLUS Rounded 1c";
+  letter-spacing: 1px;
+}
+
+html {
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+}

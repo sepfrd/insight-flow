@@ -1,0 +1,60 @@
+@import url("@/styles/global.css");
+
+.pagination {
+  display: flex;
+  position: sticky;
+  top: 1rem;
+  width: 100%;
+  z-index: 10;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0 0 0;
+}
+
+.paginationBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-radius: 0.5rem;
+  background-color: var(--primary-color);
+}
+
+.paginationButton,
+.paginationPages,
+.paginationPageSize {
+  text-align: center;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  margin: 0 1rem;
+  padding: 0.3rem 0.5rem;
+  min-width: 8rem;
+  border-radius: 5px;
+  border: none;
+}
+
+.pageSizePicker {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 0.3rem;
+}
+
+.paginationButton {
+  cursor: pointer;
+}
+
+.paginationPageNumber {
+  color: var(--hunyadi-yellow);
+}
+
+.paginationButton:enabled:active {
+  color: var(--alice-blue);
+  background-color: var(--amaranth);
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+}

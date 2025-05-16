@@ -1,5 +1,5 @@
 import { del, get, set } from "idb-keyval";
-import { KEYS_VALUES } from "../utils/constants";
+import { KEYS_VALUES } from "@/utils/constants";
 
 export const storageService = {
   storeProfileImageAsync: async (username, blob) => {
