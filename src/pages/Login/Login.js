@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { authService } from "@/api/authService";
-import { AuthContext } from "@/contexts/AuthContext";
 import "@/styles/authentication.css";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 const Login = () => {
   const [loginViewModel, setLoginViewModel] = useState({
@@ -10,7 +10,7 @@ const Login = () => {
     password: "",
   });
   const [response, setResponse] = useState({});
-  const { isAuthLoaded, isAuthenticated, onLogin } = useContext(AuthContext);
+  const { isAuthLoaded, isAuthenticated, onLogin } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {

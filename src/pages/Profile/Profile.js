@@ -1,17 +1,17 @@
 import { storageService } from "@/api/storageService";
 import { userService } from "@/api/userService";
 import Uploader from "@/components/Uploader/Uploader";
-import { AuthContext } from "@/contexts/AuthContext";
-import { ToastContext } from "@/contexts/ToastContext";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { useToast } from "../../hooks/useToast";
 import styles from "./Profile.module.css";
 
 const Profile = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [showUploadModal, setShowUploadModal] = useState(false);
-  const { userInfo, isAuthenticated, onLogout } = useContext(AuthContext);
-  const { setMessage } = useContext(ToastContext);
+  const { userInfo, isAuthenticated, onLogout } = useAuth();
+  const { setMessage } = useToast();
   const navigate = useNavigate();
 
   const handleBackgroundClick = (e) => {

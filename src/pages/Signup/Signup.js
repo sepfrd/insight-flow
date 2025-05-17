@@ -1,9 +1,9 @@
 import { authService } from "@/api/authService";
-import { AuthContext } from "@/contexts/AuthContext";
 import "@/styles/authentication.css";
 import { REGEX_PATTERNS } from "@/utils/constants";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 const Signup = () => {
   const [signupViewModel, setSignupViewModel] = useState({
@@ -16,7 +16,7 @@ const Signup = () => {
   });
   const [response, setResponse] = useState({});
   const navigate = useNavigate();
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo } = useAuth();
 
   const validate = (model) => {
     if (!new RegExp(REGEX_PATTERNS.username).test(model.username)) {

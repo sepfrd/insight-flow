@@ -1,6 +1,6 @@
 @import url("@/styles/global.css");
 
-blogPostsHeader {
+.blogPostsHeader {
   text-align: center;
   margin: 1rem 0 0 0;
 }

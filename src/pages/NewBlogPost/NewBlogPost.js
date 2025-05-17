@@ -1,11 +1,10 @@
 import { blogPostService } from "@/api/blogPostService";
 import EditableBlogPostModal from "@/components/EditableBlogPostModal/EditableBlogPostModal";
-import { ToastContext } from "@/contexts/ToastContext";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../../hooks/useToast";
 
 const NewBlogPost = () => {
-  const { setMessage } = useContext(ToastContext);
+  const { setMessage } = useToast();
   const navigate = useNavigate();
 
   const handleSubmitButton = async ({ title, body }) => {

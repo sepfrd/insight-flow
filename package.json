@@ -15,7 +15,6 @@
     "react-scripts": "^5.0.1",
     "react-toastify": "^11.0.5",
     "resolve-url-loader": "^5.0.0",
-    "styled-components": "^6.1.18",
     "webpack": "^5.98.0"
   },
   "scripts": {

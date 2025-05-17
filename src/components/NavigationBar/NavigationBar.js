@@ -1,17 +1,17 @@
 import { storageService } from "@/api/storageService";
-import { AuthContext } from "@/contexts/AuthContext";
-import { StorageContext } from "@/contexts/StorageContext";
-import { ThemeContext } from "@/contexts/ThemeContext";
+import { useAuth } from "@/hooks/useAuth";
+import { useStorage } from "@/hooks/useStorage";
+import { useTheme } from "@/hooks/useTheme";
 import { ICONS, KEYS_VALUES } from "@/utils/constants";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./NavigationBar.module.css";
 
 const NavigationBar = () => {
   const [profileImage, setProfileImage] = useState(null);
-  const { isAuthenticated, userInfo, onLogout } = useContext(AuthContext);
-  const { theme, toggleTheme } = useContext(ThemeContext);
-  const { storageUpdated } = useContext(StorageContext);
+  const { isAuthenticated, userInfo, onLogout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
+  const { storageUpdated } = useStorage();
 
   useEffect(() => {
     const fetchProfileImageAsync = async () => {

@@ -2,20 +2,20 @@ import { blogPostService } from "@/api/blogPostService";
 import BlogPosts from "@/components/BlogPosts";
 import EditableBlogPostModal from "@/components/EditableBlogPostModal";
 import PaginatedResult from "@/components/PaginatedResult";
-import { AuthContext } from "@/contexts/AuthContext";
-import { ToastContext } from "@/contexts/ToastContext";
 import "@/styles/modal.css";
 import "@/styles/single-blog-post.css";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { useToast } from "../../hooks/useToast";
 
 const UserBlogPosts = () => {
   const [showEditModal, setEditShowModal] = useState(false);
   const [editingPost, setEditingPost] = useState({ blogPostUuid: null, title: "", body: "" });
   const [deletingPostUuid, setDeletingPostUuid] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const { isAuthenticated, onLogout } = useContext(AuthContext);
-  const { setMessage } = useContext(ToastContext);
+  const { isAuthenticated, onLogout } = useAuth();
+  const { setMessage } = useToast();
   const navigate = useNavigate();
 
   const handleEditButton = (blogPost) => {
