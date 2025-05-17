@@ -6,7 +6,7 @@
 }
 
 .threeBody {
-  --uib-size: 35px;
+  --uib-size: 3rem;
   --uib-speed: 0.8s;
   --uib-color: var(--hunyadi-yellow);
   position: relative;

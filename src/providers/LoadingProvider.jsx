@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LoadingContext } from "../contexts/LoadingContext";
+import { LoadingContext } from "@/contexts/LoadingContext";
 import Loader from "@/components/Loader";
 
 export const LoadingProvider = ({ children }) => {

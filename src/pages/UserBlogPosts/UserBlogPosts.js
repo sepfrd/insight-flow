@@ -6,8 +6,8 @@ import "@/styles/modal.css";
 import "@/styles/single-blog-post.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
-import { useToast } from "../../hooks/useToast";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/useToast";
 
 const UserBlogPosts = () => {
   const [showEditModal, setEditShowModal] = useState(false);

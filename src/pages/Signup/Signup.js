@@ -3,7 +3,9 @@ import "@/styles/authentication.css";
 import { REGEX_PATTERNS } from "@/utils/constants";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "@/hooks/useAuth";
+import styles from "./Signup.module.css";
+import { useLoading } from "@/hooks/useLoading";
 
 const Signup = () => {
   const [signupViewModel, setSignupViewModel] = useState({
@@ -17,6 +19,7 @@ const Signup = () => {
   const [response, setResponse] = useState({});
   const navigate = useNavigate();
   const { userInfo } = useAuth();
+  const { setIsLoading } = useLoading();
 
   const validate = (model) => {
     if (!new RegExp(REGEX_PATTERNS.username).test(model.username)) {
@@ -46,12 +49,15 @@ const Signup = () => {
   };
 
   const handleSubmit = async (event) => {
+    setResponse({});
+    setIsLoading(true);
     event.preventDefault();
 
     const validationResult = validate(signupViewModel);
 
     if (validationResult !== true) {
       setResponse({ statusCode: 400, message: validationResult });
+      setIsLoading(false);
       return;
     }
 
@@ -63,7 +69,7 @@ const Signup = () => {
       email: signupViewModel.email,
     });
 
-    setResponse(signupResponse);
+    setIsLoading(false);
 
     if (signupResponse.isSuccess && signupResponse.data != null) {
       navigate("/login");
@@ -186,8 +192,8 @@ const Signup = () => {
           </button>
         </form>
       </div>
-      <div className="response">
-        <div className={`response__body response__body--${response.statusCode}`}>
+      <div className={styles.response}>
+        <div className={`${styles.responseBody} ${styles[`responseBody${response.statusCode}`]}`}>
           <div> {response.message} </div>
         </div>
       </div>

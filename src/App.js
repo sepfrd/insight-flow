@@ -22,7 +22,11 @@ export default function App() {
         <StorageProvider>
           <LoadingProvider>
             <ToastProvider>
-              <GlobalToast pauseOnFocusLoss={false} />
+              <GlobalToast
+                pauseOnFocusLoss={false}
+                autoClose={2500}
+                position="bottom-left"
+              />
               <NavigationBar />
               <Routes>
                 <Route

@@ -1,17 +1,18 @@
 import { authService } from "@/api/authService";
+import { useAuth } from "@/hooks/useAuth";
+import { useLoading } from "@/hooks/useLoading";
 import "@/styles/authentication.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 
 const Login = () => {
   const [loginViewModel, setLoginViewModel] = useState({
     usernameOrEmail: "",
     password: "",
   });
-  const [response, setResponse] = useState({});
   const { isAuthLoaded, isAuthenticated, onLogin } = useAuth();
   const navigate = useNavigate();
+  const { setIsLoading } = useLoading();
 
   const handleChange = (e) => {
     setLoginViewModel((prev) => ({
@@ -21,11 +22,13 @@ const Login = () => {
   };
 
   const handleSubmit = async (event) => {
+    setIsLoading(true);
+
     event.preventDefault();
 
     let loginResponse = await authService.loginAsync(loginViewModel);
 
-    setResponse(loginResponse);
+    setIsLoading(false);
 
     if (loginResponse.isSuccess && loginResponse.data != null) {
       await onLogin(loginResponse.data);
@@ -84,11 +87,6 @@ const Login = () => {
             Login
           </button>
         </form>
-      </div>
-      <div className="response">
-        <div className={`response__body response__body--${response.HttpStatusCode}`}>
-          <div> {response.Message} </div>
-        </div>
       </div>
     </>
   );

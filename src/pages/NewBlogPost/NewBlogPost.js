@@ -1,7 +1,7 @@
 import { blogPostService } from "@/api/blogPostService";
 import EditableBlogPostModal from "@/components/EditableBlogPostModal/EditableBlogPostModal";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "../../hooks/useToast";
+import { useToast } from "@/hooks/useToast";
 
 const NewBlogPost = () => {
   const { setMessage } = useToast();

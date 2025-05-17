@@ -1,5 +1,5 @@
+import { useLoading } from "@/hooks/useLoading";
 import { useEffect, useState } from "react";
-
 import styles from "./PaginatedResult.module.css";
 
 const PaginatedResult = ({ fetchPage, resultComponentBuilder }) => {
@@ -7,8 +7,11 @@ const PaginatedResult = ({ fetchPage, resultComponentBuilder }) => {
   const [items, setItems] = useState([]);
   const [{ pageNumber, pageSize }, setPagination] = useState({ pageNumber: 1, pageSize: 10 });
   const [totalPages, setTotalPages] = useState(0);
+  const { setIsLoading } = useLoading();
 
   useEffect(() => {
+    setIsLoading(true);
+
     try {
       fetchPage({ pageNumber: pageNumber, pageSize: pageSize }).then((response) => {
         setTotalPages(Math.ceil(response.totalCount / pageSize));
@@ -17,7 +20,9 @@ const PaginatedResult = ({ fetchPage, resultComponentBuilder }) => {
     } catch (err) {
       setError(err.message);
     }
-  }, [pageNumber, pageSize, fetchPage]);
+
+    setIsLoading(false);
+  }, [pageNumber, pageSize, fetchPage, setIsLoading]);
 
   const navigateTo = (page) => {
     if (page === 0) {
